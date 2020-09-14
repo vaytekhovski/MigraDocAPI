@@ -55,11 +55,11 @@ namespace MigraDoc
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -68,10 +68,8 @@ namespace MigraDoc
                 c.RoutePrefix = string.Empty;
             });
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
         }
     }
 }
