@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MigraDoc.Core.Converters
 {
-    class UserDataModelConverter : IConverter<UserDataEntity, UserDataModel>
+    public class UserDataConverter : IConverter<UserDataEntity, UserDataModel>
     {
         UserConverter UserConverter = new UserConverter();
         EducationConverter EducationConverter = new EducationConverter();
@@ -39,8 +39,11 @@ namespace MigraDoc.Core.Converters
             {
                 model.Education = EducationConverter.entityToModel(entity.Education, null);
             }
+
             if (entity.NameChanges != null)
             {
+                if (model.NameChanges == null)
+                    model.NameChanges = new List<NameChangesModel>();
                 foreach (var nameChange in entity.NameChanges)
                 {
                     model.NameChanges.Add(NameChangesConverter.entityToModel(nameChange, null));
@@ -64,6 +67,8 @@ namespace MigraDoc.Core.Converters
                 model.Nationality = NationalityConverter.entityToModel(entity.Nationality, null);
             }
 
+            model.Creed = entity.Creed;
+
             if(entity.IdentityDocument != null)
             {
                 model.IdentityDocument = IdentityDocumentConverter.entityToModel(entity.IdentityDocument, null);
@@ -71,6 +76,8 @@ namespace MigraDoc.Core.Converters
 
             if(entity.Relatives != null)
             {
+                if (model.Relatives == null)
+                    model.Relatives = new List<RelativesModel>();
                 foreach (var relative in entity.Relatives)
                 {
                     model.Relatives.Add(RelativesConverter.entityToModel(relative, null));
@@ -80,6 +87,8 @@ namespace MigraDoc.Core.Converters
 
             if(entity.Works != null)
             {
+                if (model.Works == null)
+                    model.Works = new List<WorkModel>();
                 foreach (var work in entity.Works)
                 {
                     model.Works.Add(WorkConverter.entityToModel(work, null));
@@ -139,6 +148,8 @@ namespace MigraDoc.Core.Converters
 
             if (model.NameChanges != null)
             {
+                if (entity.NameChanges == null)
+                    entity.NameChanges = new List<NameChangesEntity>();
                 foreach (var nameChange in model.NameChanges)
                 {
                     entity.NameChanges.Add(NameChangesConverter.modelToEntity(null, nameChange));
@@ -162,6 +173,8 @@ namespace MigraDoc.Core.Converters
                 entity.Nationality = NationalityConverter.modelToEntity(null, model.Nationality);
             }
 
+            entity.Creed = model.Creed;
+
             if (model.IdentityDocument != null)
             {
                 entity.IdentityDocument = IdentityDocumentConverter.modelToEntity(null, model.IdentityDocument);
@@ -169,6 +182,8 @@ namespace MigraDoc.Core.Converters
 
             if (model.Relatives != null)
             {
+                if (entity.Relatives == null)
+                    entity.Relatives = new List<RelativesEntity>();
                 foreach (var relative in model.Relatives)
                 {
                     entity.Relatives.Add(RelativesConverter.modelToEntity(null, relative));
@@ -178,6 +193,8 @@ namespace MigraDoc.Core.Converters
 
             if (model.Works != null)
             {
+                if (entity.Works == null)
+                    entity.Works = new List<WorkEntity>();
                 foreach (var work in model.Works)
                 {
                     entity.Works.Add(WorkConverter.modelToEntity(null, work));

@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CRUD\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MigraDoc.Core\MigraDoc.Core.csproj" />
   </ItemGroup>
 

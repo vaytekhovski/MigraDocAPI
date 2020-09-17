@@ -29,6 +29,8 @@ namespace MigraDoc.Core.Entities
 
         public Guid NationalityId { get; set; }
         public NationalityEntity Nationality { get; set; }
+        public string Creed { get; set; }
+
         public Guid IdentityDocumentId { get; set; }
         public IdentityDocumentEntity IdentityDocument { get; set; }
 

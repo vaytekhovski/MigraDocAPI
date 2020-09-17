@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MigraDoc.Core.Converters
 {
-    class UserConverter : IConverter<UserEntity, UserModel>
+    public class UserConverter : IConverter<UserEntity, UserModel>
     {
         public UserModel entityToModel(UserEntity entity, UserModel model)
         {

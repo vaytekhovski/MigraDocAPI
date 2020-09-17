@@ -26,6 +26,7 @@ namespace MigraDoc.Core.Models
 
 
         public NationalityModel Nationality { get; set; }
+        public string Creed { get; set; }
         public IdentityDocumentModel IdentityDocument { get; set; }
 
         public List<RelativesModel> Relatives { get; set; }

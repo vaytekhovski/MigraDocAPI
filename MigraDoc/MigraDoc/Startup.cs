@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MigraDoc.WebAPI.CRUD;
 
 namespace MigraDoc
 {
@@ -28,6 +29,7 @@ namespace MigraDoc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(typeof(UserDataRepository));
             services.AddControllers();
             services.AddMvc();
 
