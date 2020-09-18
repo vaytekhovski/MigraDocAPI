@@ -255,5 +255,34 @@ namespace MigraDoc.WebAPI.CRUD
             return userData;
         }
 
+        public void RemoveUser(string tgUserId)
+        {
+            var userData = GetUserData(tgUserId);
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.RussianKnowledges.Remove(userData.RussianKnowledge);
+                db.Addresses.Remove(userData.ResidenceAddress);
+                db.UnreleasedConvictions.Remove(userData.UnreleasedConviction);
+                db.Incomes.Remove(userData.Income.Other);
+                db.Incomes.Remove(userData.Income.SocialPayments);
+                db.Incomes.Remove(userData.Income.Securities);
+                db.Incomes.Remove(userData.Income.BankDeposit);
+                db.Incomes.Remove(userData.Income.OtherIncome);
+                db.Incomes.Remove(userData.Income.MainIncome);
+                db.IncomeLists.Remove(userData.Income);
+                db.WorkPermits.Remove(userData.WorkPermit);
+                db.Works.RemoveRange(userData.Works);
+                db.EducationLevels.Remove(userData.EducationLevel);
+                db.Relatives.RemoveRange(userData.Relatives);
+                db.IdentityDocuments.Remove(userData.IdentityDocument);
+                db.Nationalities.Remove(userData.Nationality);
+                db.NameChanges.RemoveRange(userData.NameChanges);
+                db.Educations.RemoveRange(userData.Education);
+                db.Users.Remove(userData.User);
+                db.UserDatas.Remove(userData);
+                db.SaveChanges();
+            }
+        }
+
     }
 }

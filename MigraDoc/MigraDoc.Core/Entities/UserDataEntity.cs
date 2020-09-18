@@ -15,6 +15,10 @@ namespace MigraDoc.Core.Entities
         public EducationEntity Education { get; set; }
         public List<NameChangesEntity> NameChanges { get; set; }
 
+        public bool rvp { get; set; }
+        public bool vnj { get; set; }
+        public VnjType VnjBase { get; set; }
+
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }

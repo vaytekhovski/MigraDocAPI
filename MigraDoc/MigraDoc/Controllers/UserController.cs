@@ -70,7 +70,7 @@ namespace MigraDoc.WebAPI.Controllers
             return Ok(UserDataConverter.entityToModel(user_data_entity, user));
         }
 
-        [HttpGet("{tgUserId}")]
+        [HttpGet("{tgUserId}/data")]
         public IActionResult getUserData(string tgUserId)
         {
             var user_data_entity = new UserDataEntity();
@@ -84,6 +84,21 @@ namespace MigraDoc.WebAPI.Controllers
             }
 
             return Ok(UserDataConverter.entityToModel(user_data_entity, null));
+        }
+
+        [HttpDelete("{tgUserId}/delete")]
+        public IActionResult removeUserData(string tgUserId)
+        {
+            try
+            {
+                UserDataRepository.RemoveUser(tgUserId);
+            }
+            catch(UserNotFoundException e)
+            {
+                return BadRequest(e.GetMessageObject());
+            }
+
+            return Ok("User " + tgUserId + " deleted");
         }
 
     }
