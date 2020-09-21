@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MigraDoc.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace MigraDoc.Core.Entities
         public string PreviusFirstName { get; set; }
         public string PreviusSurname { get; set; }
         public string PreviusMiddleName { get; set; }
-        public string ChangeReason { get; set; }
+        public ChangeReasonType ChangeReason { get; set; }
         public DateTime ChangeDate { get; set; }
     }
 }

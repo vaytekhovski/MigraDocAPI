@@ -11,7 +11,7 @@ namespace MigraDoc.Core.Models
         public string PreviusFirstName { get; set; }
         public string PreviusSurname { get; set; }
         public string PreviusMiddleName { get; set; }
-        public string ChangeReason { get; set; }
+        public ChangeReasonType ChangeReason { get; set; }
         public DateTime ChangeDate { get; set; }
     }
 }
