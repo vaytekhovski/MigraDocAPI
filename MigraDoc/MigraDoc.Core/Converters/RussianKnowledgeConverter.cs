@@ -17,8 +17,7 @@ namespace MigraDoc.Core.Converters
 
             model.id = entity.id;
             model.SertificateName = entity.SertificateName;
-            model.SertificateOrDiplomRF = entity.SertificateOrDiplomRF;
-            model.SertificateOrDiplomDo1991 = entity.SertificateOrDiplomDo1991;
+            model.RussianKnowledge = entity.RussianKnowledge;
             return model;
         }
 
@@ -30,9 +29,7 @@ namespace MigraDoc.Core.Converters
             }
 
             entity.SertificateName = model.SertificateName;
-            entity.SertificateOrDiplomRF = model.SertificateOrDiplomRF;
-            entity.SertificateOrDiplomDo1991 = model.SertificateOrDiplomDo1991;
-
+            entity.RussianKnowledge = model.RussianKnowledge;
             return entity;
         }
     }

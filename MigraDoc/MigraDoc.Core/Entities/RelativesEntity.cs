@@ -9,12 +9,10 @@ namespace MigraDoc.Core.Entities
     {
         public Guid id { get; set; }
         public Guid UserId { get; set; }
-        public bool HusbandOrWifeExist { get; set; }
-        public bool HusbandOrWifeAlive { get; set; }
-
-        public bool ChildExist { get; set; }
-        public bool ChildAlive { get; set; }
+        public KinsfolkType KinsfolkType { get; set; }
+        public bool alive { get; set; }
         public ChildType ChildType { get; set; }
+        public SexType SexType { get; set; }
 
         public string FirstName { get; set; }
         public string Surname { get; set; }

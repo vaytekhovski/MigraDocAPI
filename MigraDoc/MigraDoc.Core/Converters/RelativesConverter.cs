@@ -19,12 +19,10 @@ namespace MigraDoc.Core.Converters
 
             model.id = entity.id;
             model.UserId = entity.UserId;
-            model.HusbandOrWifeExist = entity.HusbandOrWifeExist;
-            model.HusbandOrWifeAlive = entity.HusbandOrWifeAlive;
-
-            model.ChildExist = entity.ChildExist;
-            model.ChildAlive = entity.ChildAlive;
+            model.KinsfolkType = entity.KinsfolkType;
+            model.alive = entity.alive;
             model.ChildType = entity.ChildType;
+            model.SexType = entity.SexType;
 
             model.FirstName = entity.FirstName;
             model.Surname = entity.Surname;
@@ -59,12 +57,10 @@ namespace MigraDoc.Core.Converters
             }
 
             entity.UserId = model.UserId;
-            entity.HusbandOrWifeExist = model.HusbandOrWifeExist;
-            entity.HusbandOrWifeAlive = model.HusbandOrWifeAlive;
-
-            entity.ChildExist = model.ChildExist;
-            entity.ChildAlive = model.ChildAlive;
+            entity.KinsfolkType = model.KinsfolkType;
+            entity.alive = model.alive;
             entity.ChildType = model.ChildType;
+            entity.SexType = model.SexType;
 
             entity.FirstName = model.FirstName;
             entity.Surname = model.Surname;
