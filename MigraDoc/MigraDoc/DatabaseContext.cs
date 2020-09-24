@@ -20,6 +20,7 @@ namespace MigraDoc.WebAPI
             }
         }
 
+        public DbSet<DocumentEntity> Documents { get; set; }
         public DbSet<AddressEntity> Addresses { get; set; }
         public DbSet<EducationEntity> Educations { get; set; }
         public DbSet<EducationLevelEntity> EducationLevels { get; set; }

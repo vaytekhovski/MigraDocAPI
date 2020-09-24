@@ -6,6 +6,7 @@ namespace MigraDoc.Core.Models
 {
     public enum SexType
     {
+        none,
         MEN,
         WOMEN
     }

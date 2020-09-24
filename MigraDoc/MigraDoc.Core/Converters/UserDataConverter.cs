@@ -21,6 +21,8 @@ namespace MigraDoc.Core.Converters
         UnreleasedConvictionConverter UnreleasedConvictionConverter = new UnreleasedConvictionConverter();
         AddressConverter AddressConverter = new AddressConverter();
         RussianKnowledgeConverter RussianKnowledgeConverter = new RussianKnowledgeConverter();
+        DocumentConverter DocumentConverter = new DocumentConverter();
+        FamilyStatusConverter FamilyStatusConverter = new FamilyStatusConverter();
         public UserDataModel entityToModel(UserDataEntity entity, UserDataModel model)
         {
             if (model == null)
@@ -32,6 +34,17 @@ namespace MigraDoc.Core.Converters
             if(entity.User != null)
             {
                 model.UserModel = UserConverter.entityToModel(entity.User, null);
+            }
+
+            model.UpdateDate = entity.UpdateDate;
+
+            if(entity.Documents != null)
+            {
+                foreach (var document in entity.Documents)
+                {
+                    model.Documents.Add(DocumentConverter.entityToModel(document, null));
+                }
+                
             }
 
             model.Sex = entity.Sex;
@@ -83,6 +96,11 @@ namespace MigraDoc.Core.Converters
                     model.Relatives.Add(RelativesConverter.entityToModel(relative, null));
                 }
                
+            }
+
+            if(entity.FamilyStatus != null)
+            {
+                model.FamilyStatus = FamilyStatusConverter.entityToModel(entity.FamilyStatus,null);
             }
 
             if(entity.Works != null)
@@ -140,6 +158,8 @@ namespace MigraDoc.Core.Converters
                 entity.User = UserConverter.modelToEntity(null, model.UserModel);
             }
 
+            entity.UpdateDate = model.UpdateDate;
+
             entity.Sex = model.Sex;
             if (model.Education != null)
             {
@@ -153,6 +173,22 @@ namespace MigraDoc.Core.Converters
                 foreach (var nameChange in model.NameChanges)
                 {
                     entity.NameChanges.Add(NameChangesConverter.modelToEntity(null, nameChange));
+                }
+            }
+
+            if(model.FamilyStatus != null)
+            {
+                entity.FamilyStatus = FamilyStatusConverter.modelToEntity(null, model.FamilyStatus);
+            }
+
+            if(model.Documents != null)
+            {
+                if (entity.Documents == null)
+                    entity.Documents = new List<DocumentEntity>();
+                foreach (var document in model.Documents)
+                {
+                    entity.Documents.Add(DocumentConverter.modelToEntity(null, document));
+
                 }
             }
 

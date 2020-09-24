@@ -8,6 +8,7 @@ namespace MigraDoc.Core.Entities
     public class RelativesEntity : IPersistentEntity
     {
         public Guid id { get; set; }
+        public UserEntity UserEntity { get; set; }
         public Guid UserId { get; set; }
         public KinsfolkType KinsfolkType { get; set; }
         public bool alive { get; set; }

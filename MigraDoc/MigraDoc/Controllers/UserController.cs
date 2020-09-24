@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MigraDoc.Core.Entities;
 using MigraDoc.Core.Models;
 using MigraDoc.Core.Converters;
-using MigraDoc.WebAPI.CRUD;
 using Com.SNGJob.Core.Exceptions;
+using MigraDoc.Core.CRUD;
 
 namespace MigraDoc.WebAPI.Controllers
 {

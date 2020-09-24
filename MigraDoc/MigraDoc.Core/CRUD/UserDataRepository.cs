@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using MigraDoc.Core.Entities;
+using MigraDoc.Core.Models;
+using MigraDoc.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MigraDoc.WebAPI.CRUD
+namespace MigraDoc.Core.CRUD
 {
     public class UserDataRepository
     {
@@ -51,7 +53,8 @@ namespace MigraDoc.WebAPI.CRUD
                         Income = IncomeList,
                         UnreleasedConviction = new UnreleasedConvictionEntity(),
                         ResidenceAddress = new AddressEntity(),
-                        RussianKnowledge = new RussianKnowledgeEntity()
+                        RussianKnowledge = new RussianKnowledgeEntity(),
+                        FamilyStatus = new FamilyStatusEntity()
                     });
                     db.SaveChanges();
 
@@ -79,7 +82,6 @@ namespace MigraDoc.WebAPI.CRUD
                 }
 
                 var exist_userdata = db.UserDatas
-                    .AsNoTracking()
                     .Where(x => x.UserId == exist_user.id)
                     .FirstOrDefault();
 
@@ -93,13 +95,21 @@ namespace MigraDoc.WebAPI.CRUD
                     db.Educations.Update(exist_userdata.Education);
                 }
 
+                if(userData.FamilyStatus != null)
+                {
+                    userData.FamilyStatus.id = exist_userdata.FamilyStatusId;
+                    exist_userdata.FamilyStatus = userData.FamilyStatus;
+                    db.FamilyStatuses.Update(exist_userdata.FamilyStatus);
+                }
+
                 if (userData.NameChanges != null)
                 {
                     foreach (var item in userData.NameChanges)
                     {
                         item.UserId = exist_user.id;
                     }
-
+                    var items_to_remove = db.NameChanges.Where(x => x.UserId == exist_user.id).ToList();
+                    db.NameChanges.RemoveRange(items_to_remove);
                     db.NameChanges.AddRange(userData.NameChanges);
                 }
 
@@ -119,7 +129,6 @@ namespace MigraDoc.WebAPI.CRUD
                     userData.Nationality.id = exist_userdata.NationalityId;
                     exist_userdata.Nationality = userData.Nationality;
                     db.Nationalities.Update(exist_userdata.Nationality);
-
                 }
 
                 exist_userdata.Creed = userData.Creed == null ? exist_userdata.Creed : userData.Creed;
@@ -139,7 +148,22 @@ namespace MigraDoc.WebAPI.CRUD
                         item.UserId = exist_user.id;
                     }
 
+                    var items_to_remove = db.Relatives.Where(x => x.UserId == exist_user.id).ToList();
+                    db.Relatives.RemoveRange(items_to_remove);
                     db.Relatives.AddRange(userData.Relatives);
+                }
+
+                if(userData.Documents != null)
+                {
+                    foreach (var item in userData.Documents)
+                    {
+                        item.UserId = exist_user.id;
+                        item.Date = DateTime.Now;
+                    }
+
+                    var items_to_remove = db.Documents.Where(x => x.UserId == exist_user.id).ToList();
+                    db.Documents.RemoveRange(items_to_remove);
+                    db.Documents.AddRange(userData.Documents);
                 }
 
                 if (userData.Works != null)
@@ -149,6 +173,8 @@ namespace MigraDoc.WebAPI.CRUD
                         item.UserId = exist_user.id;
                     }
 
+                    var items_to_remove = db.Works.Where(x => x.UserId == exist_user.id).ToList();
+                    db.Works.RemoveRange(items_to_remove);
                     db.Works.AddRange(userData.Works);
                 }
 
@@ -200,7 +226,7 @@ namespace MigraDoc.WebAPI.CRUD
 
                 }
 
-
+                exist_userdata.UpdateDate = DateTime.Now;
                 db.SaveChanges();
                 userData = exist_userdata;
             }
@@ -230,6 +256,7 @@ namespace MigraDoc.WebAPI.CRUD
 
                 userData.User = user;
 
+                userData.Documents = db.Documents.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.Education = db.Educations.AsNoTracking().Where(x => x.id == userData.EducationId).FirstOrDefault();
                 userData.NameChanges = db.NameChanges.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.Nationality = db.Nationalities.AsNoTracking().Where(x => x.id == userData.NationalityId).FirstOrDefault();
@@ -248,6 +275,7 @@ namespace MigraDoc.WebAPI.CRUD
                 userData.UnreleasedConviction = db.UnreleasedConvictions.AsNoTracking().Where(x => x.id == userData.UnreleasedConvictionId).FirstOrDefault();
                 userData.ResidenceAddress = db.Addresses.AsNoTracking().Where(x => x.id == userData.ResidenceAddressId).FirstOrDefault();
                 userData.RussianKnowledge = db.RussianKnowledges.AsNoTracking().Where(x => x.id == userData.RussianKnowledgeId).FirstOrDefault();
+                userData.FamilyStatus = db.FamilyStatuses.AsNoTracking().Where(x => x.id == userData.FamilyStatusId).FirstOrDefault();
 
 
             }
@@ -260,6 +288,7 @@ namespace MigraDoc.WebAPI.CRUD
             var userData = GetUserData(tgUserId);
             using (DatabaseContext db = new DatabaseContext())
             {
+                db.Documents.RemoveRange(userData.Documents);
                 db.RussianKnowledges.Remove(userData.RussianKnowledge);
                 db.Addresses.Remove(userData.ResidenceAddress);
                 db.UnreleasedConvictions.Remove(userData.UnreleasedConviction);
@@ -280,8 +309,68 @@ namespace MigraDoc.WebAPI.CRUD
                 db.Educations.RemoveRange(userData.Education);
                 db.Users.Remove(userData.User);
                 db.UserDatas.Remove(userData);
+                db.FamilyStatuses.Remove(userData.FamilyStatus);
                 db.SaveChanges();
             }
+        }
+
+        public List<UserDataEntity> GetUsers(ClientsFilterPanel filter)
+        {
+            var _UserDatas = new List<UserDataEntity>();
+            var UserDatas = new List<UserDataEntity>();
+
+            using(DatabaseContext db = new DatabaseContext())
+            {
+                _UserDatas = db.UserDatas
+                    .Include(x=>x.User)
+                    .Include(x=>x.Nationality)
+                    .Include(x=>x.Documents)
+                    .Include(x=>x.NameChanges)
+                    .ToList();
+
+                if(filter.country != null)
+                {
+                    _UserDatas = _UserDatas.Where(x => x.Nationality.Name == filter.country).ToList();
+                }
+
+                if(filter.documentStatus != DocumentStatusType.none)
+                {
+                    _UserDatas = _UserDatas.Where(x => x.Documents.FirstOrDefault(y => y.Status == filter.documentStatus) != null).ToList();
+                }
+
+                if(filter.documentType != null)
+                {
+                    _UserDatas = _UserDatas.Where(x => x.Documents.FirstOrDefault(y => y.Name == filter.documentType) != null).ToList();
+                }
+
+                if(filter.sex != SexType.none)
+                {
+                    _UserDatas = _UserDatas.Where(x => x.Sex == filter.sex).ToList();
+                }
+
+                if(filter.changedName != false)
+                {
+                    _UserDatas = _UserDatas.Where(x => x.NameChanges != null).ToList();
+                }
+
+
+                foreach (var userDataEntity in _UserDatas)
+                {
+                    var UserData = GetUserData(userDataEntity.User.telegramUserId);
+                    UserDatas.Add(UserData);
+                }
+
+                if(filter.newFirsts == true)
+                {
+                    UserDatas = UserDatas.OrderByDescending(x => x.UpdateDate).ToList();
+                }
+                else
+                {
+                    UserDatas = UserDatas.OrderBy(x => x.UpdateDate).ToList();
+                }
+            }
+
+            return UserDatas;
         }
 
     }

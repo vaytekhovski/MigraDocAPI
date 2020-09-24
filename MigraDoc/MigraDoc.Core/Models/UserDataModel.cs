@@ -11,10 +11,10 @@ namespace MigraDoc.Core.Models
         public SexType Sex { get; set; }
         public EducationModel Education { get; set; }
         public List<NameChangesModel> NameChanges { get; set; }
+        public List<DocumentModel> Documents { get; set; }
+        public DateTime UpdateDate { get; set; }
 
-        public bool rvp { get; set; }
-        public bool vnj { get; set; }
-        public VnjType VnjBase { get; set; }
+
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }
@@ -30,6 +30,7 @@ namespace MigraDoc.Core.Models
 
         public NationalityModel Nationality { get; set; }
         public string Creed { get; set; }
+        public FamilyStatusModel FamilyStatus { get; set; }
         public IdentityDocumentModel IdentityDocument { get; set; }
 
         public List<RelativesModel> Relatives { get; set; }
