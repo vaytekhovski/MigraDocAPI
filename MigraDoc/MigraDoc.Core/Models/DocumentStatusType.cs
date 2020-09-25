@@ -6,9 +6,9 @@ namespace MigraDoc.Core.Models
 {
     public enum DocumentStatusType
     {
-        none,
         NotStarted,
         InWork,
-        Complete
+        Complete,
+        none
     }
 }

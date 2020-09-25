@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MigraDoc.Core.ViewModels
+namespace MigraDoc.WebAPP.ViewModels
 {
     public class ClientsViewModel
     {

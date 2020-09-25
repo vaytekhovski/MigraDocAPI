@@ -157,6 +157,8 @@ namespace MigraDoc.Core.CRUD
                 {
                     foreach (var item in userData.Documents)
                     {
+                        item.UserDataEntityid = exist_userdata.id;
+                        item.UserEntityid = exist_user.id;
                         item.UserId = exist_user.id;
                         item.Date = DateTime.Now;
                     }
@@ -234,6 +236,28 @@ namespace MigraDoc.Core.CRUD
             return userData;
         }
 
+        public UserDataEntity GetUserData(Guid UserId)
+        {
+            var userData = new UserDataEntity();
+            using(DatabaseContext db = new DatabaseContext())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .Where(x => x.id == UserId)
+                    .FirstOrDefault();
+
+                if (user == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                userData = GetUserData(user.telegramUserId);
+
+            }
+
+            return userData;
+        }
+
         public UserDataEntity GetUserData(string tgUserId)
         {
             var userData = new UserDataEntity();
@@ -283,7 +307,81 @@ namespace MigraDoc.Core.CRUD
             return userData;
         }
 
-        public void RemoveUser(string tgUserId)
+        public Guid CreateRelative(Guid UserId)
+        {
+            Guid RelativeId = new Guid();
+            using(DatabaseContext db = new DatabaseContext())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .Where(x => x.id == UserId)
+                    .FirstOrDefault();
+
+                if (user == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                var Relative = new RelativesEntity
+                {
+                    UserId = UserId
+                };
+                db.Relatives.Add(Relative);
+                db.SaveChanges();
+                RelativeId = Relative.id;
+            }
+
+            return RelativeId;
+        }
+
+        public Guid RemoveRelative(Guid RelativeId)
+        {
+            Guid UserId = new Guid();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var Relative = db.Relatives.Where(x => x.id == RelativeId).FirstOrDefault();
+                if (Relative == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                UserId = Relative.UserId;
+                db.Relatives.Remove(Relative);
+                db.SaveChanges();
+            }
+            return UserId;
+
+        }
+
+        public UserDataEntity GetUserRelative(Guid UserId, Guid RelativeId)
+        {
+            var userData = new UserDataEntity();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .Where(x => x.id == UserId)
+                    .FirstOrDefault();
+
+                if (user == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                userData = db.UserDatas
+                    .AsNoTracking()
+                    .Where(x => x.UserId == user.id)
+                    .Include(x => x.User)
+                    .Include(x => x.Relatives.Where(y => y.id == RelativeId))
+                    .Include(x => x.Documents)
+                    .FirstOrDefault();
+
+            }
+
+            return userData;
+        }
+
+            public void RemoveUser(string tgUserId)
         {
             var userData = GetUserData(tgUserId);
             using (DatabaseContext db = new DatabaseContext())
@@ -314,10 +412,11 @@ namespace MigraDoc.Core.CRUD
             }
         }
 
+
         public List<UserDataEntity> GetUsers(ClientsFilterPanel filter)
         {
             var _UserDatas = new List<UserDataEntity>();
-            var UserDatas = new List<UserDataEntity>();
+            //var UserDatas = new List<UserDataEntity>();
 
             using(DatabaseContext db = new DatabaseContext())
             {
@@ -328,49 +427,116 @@ namespace MigraDoc.Core.CRUD
                     .Include(x=>x.NameChanges)
                     .ToList();
 
-                if(filter.country != null)
+                if(filter.country != "none")
                 {
                     _UserDatas = _UserDatas.Where(x => x.Nationality.Name == filter.country).ToList();
                 }
 
-                if(filter.documentStatus != DocumentStatusType.none)
+                if(filter.documentStatus != "all")
                 {
-                    _UserDatas = _UserDatas.Where(x => x.Documents.FirstOrDefault(y => y.Status == filter.documentStatus) != null).ToList();
+                    var DocumentStatus = new DocumentStatusType();
+                    switch (filter.documentStatus)
+                    {
+                        case "all":
+                            DocumentStatus = DocumentStatusType.none;
+                            break;
+                        case "new":
+                            DocumentStatus = DocumentStatusType.NotStarted;
+                            break;
+                        case "inWork":
+                            DocumentStatus = DocumentStatusType.InWork;
+                            break;
+                        case "closed":
+                            DocumentStatus = DocumentStatusType.Complete;
+                            break;
+
+                        default:
+                            break;
+                    }
+                    _UserDatas = _UserDatas.Where(x => x.Documents.FirstOrDefault(y => y.Status == DocumentStatus) != null).ToList();
                 }
 
-                if(filter.documentType != null)
+                if(filter.documentType != "none")
                 {
                     _UserDatas = _UserDatas.Where(x => x.Documents.FirstOrDefault(y => y.Name == filter.documentType) != null).ToList();
                 }
 
-                if(filter.sex != SexType.none)
+                if(filter.sex != "none")
                 {
-                    _UserDatas = _UserDatas.Where(x => x.Sex == filter.sex).ToList();
+                    var sex = new SexType();
+                    switch (filter.sex)
+                    {
+                        case "men":
+                            sex = SexType.MEN;
+                            break;
+                        case "women":
+                            sex = SexType.WOMEN;
+                            break;
+                        default:
+                            break;
+                    }
+                    _UserDatas = _UserDatas.Where(x => x.Sex == sex).ToList();
                 }
 
-                if(filter.changedName != false)
+                if(filter.changedName != "none")
                 {
                     _UserDatas = _UserDatas.Where(x => x.NameChanges != null).ToList();
                 }
 
-
+                /*
                 foreach (var userDataEntity in _UserDatas)
                 {
                     var UserData = GetUserData(userDataEntity.User.telegramUserId);
                     UserDatas.Add(UserData);
                 }
+                */
 
-                if(filter.newFirsts == true)
+
+
+                if(filter.orderBy == "new")
                 {
-                    UserDatas = UserDatas.OrderByDescending(x => x.UpdateDate).ToList();
+                    _UserDatas = _UserDatas.OrderByDescending(x => x.UpdateDate).ToList();
                 }
                 else
                 {
-                    UserDatas = UserDatas.OrderBy(x => x.UpdateDate).ToList();
+                    _UserDatas = _UserDatas.OrderBy(x => x.UpdateDate).ToList();
                 }
             }
 
-            return UserDatas;
+            return _UserDatas;
+        }
+
+        public Guid ChangeUserDocumentStatus(Guid DocumentId)
+        {
+            Guid UserId = new Guid();
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                var document = db.Documents.Where(x => x.id == DocumentId).FirstOrDefault();
+
+                if (document == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                UserId = document.UserId;
+                switch (document.Status)
+                {
+                    case DocumentStatusType.NotStarted:
+                        document.Status = DocumentStatusType.InWork;
+                        break;
+                    case DocumentStatusType.InWork:
+                        document.Status = DocumentStatusType.Complete;
+                        break;
+                    case DocumentStatusType.Complete:
+                        break;
+                    default:
+                        break;
+                }
+                db.SaveChanges();
+
+            }
+
+            return UserId;
         }
 
     }

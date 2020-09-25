@@ -3,6 +3,7 @@
     Layout = null;
 }
 
+@model MigraDoc.Core.ViewModels.ClientsViewModel 
 
 
 <!DOCTYPE html>
@@ -13,9 +14,9 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Index</title>
+    <title>Clients</title>
     <link rel="stylesheet" href="~/css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="~/css/Index.css" media="screen">
+    <link rel="stylesheet" href="~/css/Clients.css" media="screen">
     <script class="u-script" type="text/javascript" src="~/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="~/js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 2.26.5, nicepage.com">
@@ -23,103 +24,96 @@
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
 
-    <meta property="og:title" content="Index">
+
+    <meta property="og:title" content="Clients">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#449667">
     <link rel="canonical" href="index.html">
     <meta property="og:url" content="index.html">
 </head>
-<body data-home-page="Index.html" data-home-page-title="Index" class="u-body u-overlap u-overlap-contrast">
+<body class="u-body">
     @Html.Partial("Header")
-    <section class="u-clearfix u-image u-shading u-section-1" src="" id="sec-2420">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-container-style u-group u-group-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1">
-                    <h1 class="u-heading-font u-text u-title u-text-1">Быстро как никогда!</h1>
-                    <p class="u-large-text u-text u-text-font u-text-variant u-text-2">Пример текста. Кликните, чтобы выбрать текстовый блок. Кликните еще раз или сделайте двойной клик, чтобы начать редактирование текста.</p>
-                    <div class="u-form u-form-1">
-                        <form action="#" method="POST" class="u-block-43b8-8 u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" source="custom" style="">
-                            <div class="u-form-email u-form-group u-form-group-1">
-                                <label for="email-6dba" class="u-form-control-hidden u-label">Эл. почта</label>
-                                <input type="email" placeholder="Номер телефона" id="email-6dba" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
-                            </div>
-                            <div class="u-form-group u-form-submit u-form-group-2">
-                                <a href="https://nicepage.com" class="u-btn u-btn-submit u-button-style u-btn-1">
-                                    Начать<br>
-                                </a>
-                                <input type="button" value="submit" class="u-form-control-hidden">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="u-clearfix u-section-2" id="sec-e4ed">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
-                <div class="u-gutter-0 u-layout">
-                    <div class="u-layout-row">
-                        <div class="u-size-30 u-size-60-md">
-                            <div class="u-layout-col">
-                                <div class="u-container-style u-image u-layout-cell u-left-cell u-size-40 u-image-1" src="">
-                                    <div class="u-container-layout u-valign-middle u-container-layout-1"></div>
-                                </div>
-                                <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-2">
-                                    <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                        <h2 class="u-text u-text-1">Без ошибок</h2>
-                                        <p class="u-text u-text-2">Пример текста. Кликните, чтобы выбрать текстовый блок. Кликните еще раз или сделайте двойной клик, чтобы начать редактирование текста.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="u-size-30 u-size-60-md">
-                            <div class="u-layout-col">
-                                <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-layout-cell-3">
-                                    <div class="u-container-layout u-valign-middle u-container-layout-3">
-                                        <h2 class="u-text u-text-3">Без бумаг</h2>
-                                        <p class="u-text u-text-4">Пример текста. Кликните, чтобы выбрать текстовый блок. Кликните еще раз или сделайте двойной клик, чтобы начать редактирование текста.</p>
-                                    </div>
-                                </div>
-                                <div class="u-container-style u-image u-layout-cell u-right-cell u-size-40 u-image-2" src="">
-                                    <div class="u-container-layout u-valign-middle u-container-layout-4"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="-lg -sm -xl -xs u-clearfix u-image u-parallax u-shading u-section-3" src="" id="sec-1ce0">
+
+    <section class="skrollable u-clearfix u-section-1" id="sec-5295">
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <div class="u-align-left u-container-style u-group u-group-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-1">
-                    <h1 class="u-text u-title u-text-1">Мы сделаем это за Вас!</h1>
-                    <p class="u-large-text u-text u-text-variant u-text-2">Пример текста. Кликните, чтобы выбрать текстовый блок. Кликните еще раз или сделайте двойной клик, чтобы начать редактирование текста.</p>
-                </div>
+            <div class="u-expanded-width u-form u-form-1">
+                <form action="Clients" class="u-clearfix u-form-custom-backend u-form-horizontal u-form-spacing-10 u-inner-form" style="padding: 10px">
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-1">
+                        <label for="select-1c9a" class="u-form-control-hidden u-label"></label>
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.country, (IEnumerable<SelectListItem>)Model.filter.Countrys, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-1", name = "country", id = "filter1" })
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-2">
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.documentType, (IEnumerable<SelectListItem>)Model.filter.DocumentTypes, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-2", name = "documentType", id = "filter2" })
+
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-3">
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.documentStatus, (IEnumerable<SelectListItem>)Model.filter.DocumentStatuses, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-3", name = "documentStatus", id = "filter3" })
+
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-4">
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.sex, (IEnumerable<SelectListItem>)Model.filter.Sexs, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-4", name = "sex", id = "filter4" })
+
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-5">
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.changedName, (IEnumerable<SelectListItem>)Model.filter.ChangedNames, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-5", name = "changedName", id = "filter5" })
+
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-vertical-form-control-visible u-form-group-6">
+                        <div class="u-form-select-wrapper">
+                            @Html.DropDownListFor(m => m.filter.orderBy, (IEnumerable<SelectListItem>)Model.filter.OrderBy, new { @class = "u-border-1 u-border-grey-50 u-input u-input-rectangle u-input-6", name = "orderBy", id = "filter6" })
+                        </div>
+                    </div>
+                    <div class="u-align-left u-form-group u-form-submit u-form-group-7">
+                        <button class="u-btn u-btn-submit u-button-style u-btn-1" type="submit" formmethod="post" formaction="Clients">Обновить</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
-    <section class="u-clearfix u-section-4" id="sec-04c7">
+    @foreach (var user in Model.Users)
+    {
+
+   
+    <section class="u-clearfix u-section-2" id="carousel_ef38">
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-                <div class="u-layout" style="">
-                    <div class="u-layout-row" style="">
-                        <div class="u-align-center u-container-style u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-white u-layout-cell-1" src="">
-                            <div class="u-container-layout u-valign-middle u-container-layout-1">
-                                <h2 class="u-text u-text-1">Наверняка</h2>
-                                <p class="u-text u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                                <a href="https://nicepage.com" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">learn more</a>
+                <div class="u-layout">
+                    <div class="u-layout-row">
+                        <div class="u-container-style u-layout-cell u-left-cell u-size-18 u-layout-cell-1">
+                            <div class="u-container-layout u-valign-bottom u-container-layout-1">
+                                <div alt="" class="u-image u-image-circle u-image-1" src="" data-image-width="1160" data-image-height="1280"></div>
+                                <h5 class="u-align-center u-text u-text-1">@user.DocumentName от @user.DocumentDate</h5>
                             </div>
                         </div>
-                        <div class="u-align-center u-container-style u-image u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-image-1" src="" data-image-width="626" data-image-height="417">
-                            <div class="u-container-layout u-valign-middle u-container-layout-2" src=""></div>
+                        <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-42 u-layout-cell-2">
+                            <div class="u-container-layout u-container-layout-2">
+                                <h3 class="u-text u-text-2">@user.UserData.Surname @user.UserData.FirstName @user.UserData.MiddleName</h3>
+                                <h6 class="u-text u-text-3">@user.UserData.EngSurname @user.UserData.EngFirstName</h6>
+                                <h6 class="u-text u-text-4">@user.UserData.Nationality.Name</h6>
+                                <h5 class="u-text u-text-5">@user.DocumentStatus</h5>
+                                <h6 class="u-text u-text-6"></h6>
+                                <a href="~/Home/Data?UserId=@user.UserData.UserId&DocumentId=@user.DocumentId" class="u-btn u-button-style u-btn-1">Просмотреть</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    }
+    <section class="u-clearfix u-section-3" id="sec-028b">
+        <div class="u-clearfix u-sheet u-sheet-1"></div>
     </section>
 
 

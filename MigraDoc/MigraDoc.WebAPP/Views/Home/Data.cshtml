@@ -1,0 +1,613 @@
+﻿@{
+    ViewData["Title"] = "MigraDoc";
+    Layout = null;
+}
+
+@model MigraDoc.Core.ViewModels.UserDataViewModel
+
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="ru-RU">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Data</title>
+    <link rel="stylesheet" href="~/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="~/css/Data.css" media="screen">
+    <script class="u-script" type="text/javascript" src="~/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="~/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 2.26.5, nicepage.com">
+    <link rel="icon" href="~/images/favicon.png">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+
+
+    <meta property="og:title" content="Data">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#449667">
+    <link rel="canonical" href="index.html">
+    <meta property="og:url" content="index.html">
+</head>
+<body class="u-body">
+    @Html.Partial("Header")
+
+    <section class="u-clearfix u-section-1" id="sec-6493">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+            <a href="../Home/Clients" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">Назад</a>
+        </div>
+    </section>
+    <section class="u-clearfix u-section-2" id="sec-1104">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+                <div class="u-layout">
+                    <div class="u-layout-row">
+                        <div class="u-container-style u-layout-cell u-left-cell u-size-18 u-layout-cell-1">
+                            <div class="u-container-layout u-valign-bottom u-container-layout-1">
+                                <div alt="" class="u-image u-image-circle u-image-1" src="" data-image-width="1160" data-image-height="1280"></div>
+                                <h5 class="u-align-center u-text u-text-1">@Model.DocumentName от @Model.DocumentDate</h5>
+                            </div>
+                        </div>
+                        <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-42 u-layout-cell-2">
+                            <div class="u-container-layout u-container-layout-2">
+                                <h3 class="u-text u-text-2">@Model.UserData.Surname @Model.UserData.FirstName @Model.UserData.MiddleName</h3>
+                                <h6 class="u-text u-text-3">@Model.UserData.EngSurname @Model.UserData.EngFirstName</h6>
+                                <h6 class="u-text u-text-4">@Model.UserData.Nationality.Name</h6>
+                                <h5 class="u-text u-text-5">@Model.DocumentStatus</h5>
+                                <h6 class="u-text u-text-6"></h6>
+                                @if (@Model.DocumentStatus == "Не начат")
+                                {
+                                    <a href="~/Home/ChangeDocumentStatus?DocumentId=@Model.DocumentId" class="u-btn u-button-style u-btn-1">Начать</a>
+                                }
+                                else if (@Model.DocumentStatus == "В процессе")
+                                {
+                                    <a href="~/Home/ChangeDocumentStatus?DocumentId=@Model.DocumentId" class="u-btn u-button-style u-btn-1">Завершить</a>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="u-clearfix u-section-3" id="sec-989e">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+            <div class="u-expanded-width u-form u-form-1">
+                <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form" redirect="true">
+                    <div class="u-form-group u-form-radiobutton u-form-group-1">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="osnovanie" value="проживаете в Российской Федерации не менее одного года на основании разрешения на временное проживание (п. 1 ст. 8 115-ФЗ 1)">
+                            <label class="u-label u-label-1" for="radiobutton">проживаете в Российской Федерации не менее одного года на основании разрешения на временное проживание (п. 1 ст. 8 115-ФЗ 1)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="родились на территории РСФСР и состояли в прошлом в гражданстве СССР (пп. 1 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-2" for="radiobutton">родились на территории РСФСР и состояли в прошлом в гражданстве СССР (пп. 1 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="признаны носителем русского языка (пп. 7 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-3" for="radiobutton">признаны носителем русского языка (пп. 7 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="сами либо родственник подвергнуты незаконной депортации с территории Крымской АССР (пп. 8 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-4" for="radiobutton">сами либо родственник подвергнуты незаконной депортации с территории Крымской АССР (пп. 8 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="являетесь высококвалифицированным специалистом либо членом его семьи (пп. 9 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-5" for="radiobutton">являетесь высококвалифицированным специалистом либо членом его семьи (пп. 9 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="осуществляли трудовую деятельность в Российской Федерации, дающую право на упрощенный порядок приема в гражданство">
+                            <label class="u-label u-label-6" for="radiobutton">осуществляли трудовую деятельность в Российской Федерации, дающую право на упрощенный порядок приема в гражданство</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="(пп. 10 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-7" for="radiobutton">(пп. 10 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="имеете документ о высшем образовании и о квалификации с отличием, подтверждающий успешное освоение в Российской Федерации">
+                            <label class="u-label u-label-8" for="radiobutton">имеете документ о высшем образовании и о квалификации с отличием, подтверждающий успешное освоение в Российской Федерации</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="образовательной программы высшего образования, имеющей государственную аккредитацию, по очной форме обучения (пп. 11 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-9" for="radiobutton">образовательной программы высшего образования, имеющей государственную аккредитацию, по очной форме обучения (пп. 11 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="проживаете в Российской Федерации, и у Вас было прекращено гражданство Российской Федерации (пп. 12 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-10" for="radiobutton">проживаете в Российской Федерации, и у Вас было прекращено гражданство Российской Федерации (пп. 12 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="проживаете в Российской Федерации, и в отношении Вас отменено решение о приобретении гражданства Российской Федерации">
+                            <label class="u-label u-label-11" for="radiobutton">проживаете в Российской Федерации, и в отношении Вас отменено решение о приобретении гражданства Российской Федерации</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="(пп. 13 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-12" for="radiobutton">(пп. 13 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="являетесь лицом, указанным в ч. 1 или 3 ст. 41.1 62-ФЗ 2 (пп. 14 п. 2 ст. 8 115-ФЗ)">
+                            <label class="u-label u-label-13" for="radiobutton">являетесь лицом, указанным в ч. 1 или 3 ст. 41.1 62-ФЗ 2 (пп. 14 п. 2 ст. 8 115-ФЗ)</label>
+                            <br>
+                            <input type="radio" name="osnovanie" value="являетесь гражданином Республики Беларусь (п. 1 ст. 4 Соглашения между Российской Федерацией и Республикой Беларусь)">
+                            <label class="u-label u-label-14" for="radiobutton">являетесь гражданином Республики Беларусь (п. 1 ст. 4 Соглашения между Российской Федерацией и Республикой Беларусь)</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-2">
+                        <label for="text-75e2" class="u-label u-label-15">Фамилия (рус.)</label>
+                        <input type="text" placeholder="" id="text-75e2" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-3">
+                        <label for="text-9712" class="u-label u-label-16">Имя (имена) (рус.)</label>
+                        <input type="text" placeholder="" id="text-9712" name="text-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-4">
+                        <label for="text-259c" class="u-label u-label-17">Отчество (отчества) (при наличии) (рус.)</label>
+                        <input type="text" placeholder="" id="text-259c" name="text-5" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-5">
+                        <label for="text-d1b2" class="u-label u-label-18">Фамилия (лат.)</label>
+                        <input type="text" placeholder="" id="text-d1b2" name="text-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-6">
+                        <label for="text-9cc9" class="u-label u-label-19">Имя (имена) (лат.)</label>
+                        <input type="text" placeholder="" id="text-9cc9" name="text-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-group-7">
+                        <label for="text-804d" class="u-label u-label-20">Вероисповедание</label>
+                        <input type="text" placeholder="" id="text-804d" name="text-53" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-checkbox u-form-group u-form-group-8">
+                        <input type="checkbox" id="checkbox-e2da" name="checkbox" value="On">
+                        <label for="checkbox-e2da" class="u-label u-label-21">Имели ранее другие фамилию, имя, отчество?</label>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-9">
+                        <label for="text-2bd6" class="u-label u-label-22">Прежняя фамилия</label>
+                        <input type="text" placeholder="" id="text-2bd6" name="text-6" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-10">
+                        <label for="text-05b5" class="u-label u-label-23">Прежнее имя</label>
+                        <input type="text" placeholder="" id="text-05b5" name="text-7" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-11">
+                        <label for="text-67c0" class="u-label u-label-24">Прежнее отчество (при наличии)</label>
+                        <input type="text" placeholder="" id="text-67c0" name="text-8" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-12">
+                        <label for="text-f063" class="u-label u-label-25">Причина изменения</label>
+                        <input type="text" placeholder="" id="text-f063" name="text-9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-13">
+                        <label for="date-837a" class="u-label u-label-26">Дата изменения</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-837a" name="date" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-14">
+                        <label for="text-d257" class="u-label u-label-27">Страна рождения</label>
+                        <input type="text" placeholder="" id="text-d257" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-15">
+                        <label for="date-0ff5" class="u-label u-label-28">Дата рождения</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-0ff5" name="date-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-group-16">
+                        <label for="text-f223" class="u-label u-label-29">Место рождения</label>
+                        <input type="text" placeholder="" id="text-f223" name="text-10" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-17">
+                        <label for="text-99a2" class="u-label u-label-30">Государство</label>
+                        <input type="text" placeholder="" id="text-99a2" name="text-11" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-18">
+                        <label for="text-8b09" class="u-label u-label-31">Место приобретения</label>
+                        <input type="text" placeholder="" id="text-8b09" name="text-13" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-19">
+                        <label for="text-0795" class="u-label u-label-32">Основание приобретения</label>
+                        <input type="text" placeholder="" id="text-0795" name="text-12" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-20">
+                        <label for="date-9710" class="u-label u-label-33">Дата приобретения</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-9710" name="date-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-checkbox u-form-group u-form-group-21">
+                        <input type="checkbox" id="checkbox-54e7" name="checkbox-1" value="On">
+                        <label for="checkbox-54e7" class="u-label u-label-34">Являюсь лицом без гражданства</label>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-22">
+                        <label for="text-4160" class="u-label u-label-35">Основание утраты</label>
+                        <input type="text" placeholder="" id="text-4160" name="text-14" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-23">
+                        <label for="text-5194" class="u-label u-label-36">Место утраты</label>
+                        <input type="text" placeholder="" id="text-5194" name="text-15" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-24">
+                        <label for="text-81a1" class="u-label u-label-37">Дата утраты</label>
+                        <input type="date" placeholder="" id="text-81a1" name="text-16" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-radiobutton u-form-group-25">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="sex" value="Мужской">
+                            <label class="u-label" for="radiobutton">Мужской</label>
+                            <br>
+                            <input type="radio" name="sex" value="Женский">
+                            <label class="u-label" for="radiobutton">Женский</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-group-26">
+                        <label for="text-97c8" class="u-label u-label-40">Документ, удостоверяющий личность</label>
+                        <input type="text" placeholder="" id="text-97c8" name="text-17" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-27">
+                        <label for="text-c537" class="u-label u-label-41">Серия</label>
+                        <input type="text" placeholder="" id="text-c537" name="text-18" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-28">
+                        <label for="text-ea9f" class="u-label u-label-42">Номер</label>
+                        <input type="text" placeholder="" id="text-ea9f" name="text-19" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-29">
+                        <label for="date-97a1" class="u-label u-label-43">Дата выдачи</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-97a1" name="date-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-group-30">
+                        <label for="text-cc32" class="u-label u-label-44">Орган, выдавший документ</label>
+                        <input type="text" placeholder="" id="text-cc32" name="text-20" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-radiobutton u-form-group-31">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="marriage" value="Женат (замужем)">
+                            <label class="u-label" for="radiobutton">Женат (замужем)</label>
+                            <br>
+                            <input type="radio" name="marriage" value="Холост (незамужняя)">
+                            <label class="u-label" for="radiobutton">Холост (незамужняя)</label>
+                            <br>
+                            <input type="radio" name="marriage" value="Вдовец (вдова)">
+                            <label class="u-label" for="radiobutton">Вдовец (вдова)</label>
+                            <br>
+                            <input type="radio" name="marriage" value="Разведен(а)">
+                            <label class="u-label" for="radiobutton">Разведен(а)</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-32">
+                        <label for="text-4a55" class="u-label u-label-49">Номер свидетельства о браке (разводе)</label>
+                        <input type="text" placeholder="" id="text-4a55" name="text-21" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-33">
+                        <label for="date-fd8e" class="u-label u-label-50">Дата выдачи</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-fd8e" name="date-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-34">
+                        <label for="text-e853" class="u-label u-label-51">Место выдачи</label>
+                        <input type="text" placeholder="" id="text-e853" name="text-22" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-35">
+                        <label for="date-a323" class="u-label u-label-52">Дата приема на работу</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-a323" name="date-5" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-36">
+                        <label for="date-2d44" class="u-label u-label-53">Дата увольнения</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-2d44" name="date-6" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-4 u-form-group-37">
+                        <label for="text-0266" class="u-label u-label-54">Должность</label>
+                        <input type="text" placeholder="" id="text-0266" name="text-23" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-4 u-form-group-38">
+                        <label for="text-d90a" class="u-label u-label-55">Адрес места работы</label>
+                        <input type="text" placeholder="" id="text-d90a" name="text-24" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-radiobutton u-form-group-39">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="obshee" value="Дошкольное образование">
+                            <label class="u-label" for="radiobutton">Дошкольное образование</label>
+                            <br>
+                            <input type="radio" name="obshee" value="Начальное общее образование">
+                            <label class="u-label" for="radiobutton">Начальное общее образование</label>
+                            <br>
+                            <input type="radio" name="obshee" value="Основное общее образование">
+                            <label class="u-label" for="radiobutton">Основное общее образование</label>
+                            <br>
+                            <input type="radio" name="obshee" value="Среднее общее образование">
+                            <label class="u-label" for="radiobutton">Среднее общее образование</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-radiobutton u-form-group-40">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="professionalnoe" value="Среднее профессиональное образование">
+                            <label class="u-label" for="radiobutton">Среднее профессиональное образование</label>
+                            <br>
+                            <input type="radio" name="professionalnoe" value="Высшее образование - бакалавриат">
+                            <label class="u-label" for="radiobutton">Высшее образование - бакалавриат</label>
+                            <br>
+                            <input type="radio" name="professionalnoe" value="Высшее образование - специалитет, магистратура">
+                            <label class="u-label" for="radiobutton">Высшее образование - специалитет, магистратура</label>
+                            <br>
+                            <input type="radio" name="professionalnoe" value="Высшее образование - подготовка кадров высшей квалификации">
+                            <label class="u-label" for="radiobutton">Высшее образование - подготовка кадров высшей квалификации</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-radiobutton u-form-group-41">
+                        <div class="u-form-radio-button-wrapper">
+                            <input type="radio" name="stepen" value="Кандидат наук">
+                            <label class="u-label" for="radiobutton">Кандидат наук</label>
+                            <br>
+                            <input type="radio" name="stepen" value="Доктор наук">
+                            <label class="u-label" for="radiobutton">Доктор наук</label>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-42">
+                        <label for="text-db35" class="u-label u-label-66">Информация о полученном в Российской Федерации профессионально образовании</label>
+                        <input type="text" placeholder="" id="text-db35" name="text-54" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-43">
+                        <label for="date-f458" class="u-label u-label-67">Дата окончания</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-f458" name="date-11" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-44">
+                        <label for="text-a6b7" class="u-label u-label-68">Номер документа об образовании</label>
+                        <input type="text" placeholder="" id="text-a6b7" name="text-55" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-45">
+                        <label for="text-b5bd" class="u-label u-label-69">Квалификация (с отличием/без отличия)</label>
+                        <input type="text" placeholder="" id="text-b5bd" name="text-56" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-46">
+                        <label for="text-abdf" class="u-label u-label-70">Место выдачи</label>
+                        <input type="text" placeholder="" id="text-abdf" name="text-57" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-47">
+                        <label for="date-89f1" class="u-label u-label-71">Дата выдачи</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-89f1" name="date-12" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-48">
+                        <label for="text-284b" class="u-label u-label-72">Полученная профессия</label>
+                        <input type="text" placeholder="" id="text-284b" name="text-58" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-49">
+                        <label for="text-8ec2" class="u-label u-label-73">Специальность</label>
+                        <input type="text" placeholder="" id="text-8ec2" name="text-59" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-50">
+                        <label for="text-74bb" class="u-label u-label-74">Направление подготовки</label>
+                        <input type="text" placeholder="" id="text-74bb" name="text-60" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-group-51">
+                        <label for="text-54a8" class="u-label u-label-75">Разрешение на работу, выданное высококвалифицированному специалисту</label>
+                        <input type="text" placeholder="" id="text-54a8" name="text-25" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-4 u-form-group-52">
+                        <label for="text-a5ba" class="u-label u-label-76">Серия</label>
+                        <input type="text" placeholder="" id="text-a5ba" name="text-26" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-4 u-form-group-53">
+                        <label for="text-3751" class="u-label u-label-77">Номер</label>
+                        <input type="text" placeholder="" id="text-3751" name="text-27" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-54">
+                        <label for="date-df7c" class="u-label u-label-78">Дата выдачи</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-df7c" name="date-7" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-55">
+                        <label for="date-df82" class="u-label u-label-79">Действителен до</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-df82" name="date-8" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-56">
+                        <label for="text-f084" class="u-label u-label-80">Доход по основному месту работы (величина)</label>
+                        <input type="text" placeholder="" id="text-f084" name="text-28" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-57">
+                        <label for="text-2d14" class="u-label u-label-81">Валюта</label>
+                        <input type="text" placeholder="" id="text-2d14" name="text-29" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-58">
+                        <label for="text-66fe" class="u-label u-label-82">Доход от иной деятельности (величина)</label>
+                        <input type="text" placeholder="" id="text-66fe" name="text-30" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-59">
+                        <label for="text-2a7b" class="u-label u-label-83">Валюта</label>
+                        <input type="text" placeholder="" id="text-2a7b" name="text-31" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-60">
+                        <label for="text-6c27" class="u-label u-label-84">Доход от вкладов в банках и иных кредитных организациях (величина)</label>
+                        <input type="text" placeholder="" id="text-6c27" name="text-32" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-61">
+                        <label for="text-aa20" class="u-label u-label-85">Валюта</label>
+                        <input type="text" placeholder="" id="text-aa20" name="text-33" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-62">
+                        <label for="text-0f67" class="u-label u-label-86">Доход от ценных бумаг и долей участия в коммерческих организациях (валюта)</label>
+                        <input type="text" placeholder="" id="text-0f67" name="text-34" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-group-63">
+                        <label for="text-28c1" class="u-label u-label-87">Валюта</label>
+                        <input type="text" placeholder="" id="text-28c1" name="text-35" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-64">
+                        <label for="text-663d" class="u-label u-label-88">Пенсии, стипендии и иные социальные выплаты или доходы (величина)</label>
+                        <input type="text" placeholder="" id="text-663d" name="text-36" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-65">
+                        <label for="text-395c" class="u-label u-label-89">Указать какие</label>
+                        <input type="text" placeholder="" id="text-395c" name="text-38" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-66">
+                        <label for="text-8710" class="u-label u-label-90">Валюта</label>
+                        <input type="text" placeholder="" id="text-8710" name="text-37" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-67">
+                        <label for="text-824a" class="u-label u-label-91">Иные виды дохода (величина)</label>
+                        <input type="text" placeholder="" id="text-824a" name="text-39" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-68">
+                        <label for="text-3908" class="u-label u-label-92">Указать какие</label>
+                        <input type="text" placeholder="" id="text-3908" name="text-41" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-69">
+                        <label for="text-d29c" class="u-label u-label-93">Валюта</label>
+                        <input type="text" placeholder="" id="text-d29c" name="text-40" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-checkbox u-form-group u-form-group-70">
+                        <input type="checkbox" id="checkbox-7269" name="checkbox-2" value="On">
+                        <label for="checkbox-7269" class="u-label u-label-94">Имею непогашенную или неснятую судимость за совершение тяжкого или особо тяжкого преступления за пределами Российской Федерации</label>
+                    </div>
+                    <div class="u-form-group u-form-group-71">
+                        <label for="text-95e6" class="u-label u-label-95">Где осуждены</label>
+                        <input type="text" placeholder="" id="text-95e6" name="text-42" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-72">
+                        <label for="date-eb4b" class="u-label u-label-96">Когда осуждены</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-eb4b" name="date-9" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-73">
+                        <label for="text-7784" class="u-label u-label-97">Срок наказания</label>
+                        <input type="text" placeholder="" id="text-7784" name="text-43" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-74">
+                        <label for="date-f601" class="u-label u-label-98">Дата отбытия наказания</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-f601" name="date-10" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-75">
+                        <label for="text-3377" class="u-label u-label-99">Адрес места жительства (пребывания) Субъект</label>
+                        <input type="text" placeholder="" id="text-3377" name="text-44" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-76">
+                        <label for="text-1624" class="u-label u-label-100">Населенный пункт</label>
+                        <input type="text" placeholder="" id="text-1624" name="text-45" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-77">
+                        <label for="text-91a2" class="u-label u-label-101">Район</label>
+                        <input type="text" placeholder="" id="text-91a2" name="text-46" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-78">
+                        <label for="text-c9d0" class="u-label u-label-102">Индекс</label>
+                        <input type="text" placeholder="" id="text-c9d0" name="text-47" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-79">
+                        <label for="text-e826" class="u-label u-label-103">Улица</label>
+                        <input type="text" placeholder="" id="text-e826" name="text-48" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-80">
+                        <label for="text-f945" class="u-label u-label-104">Дом</label>
+                        <input type="text" placeholder="" id="text-f945" name="text-49" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-81">
+                        <label for="text-7244" class="u-label u-label-105">Корпус</label>
+                        <input type="text" placeholder="" id="text-7244" name="text-50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-82">
+                        <label for="text-ee04" class="u-label u-label-106">Строение</label>
+                        <input type="text" placeholder="" id="text-ee04" name="text-51" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-6 u-form-group-83">
+                        <label for="text-3312" class="u-label u-label-107">Квартира</label>
+                        <input type="text" placeholder="" id="text-3312" name="text-52" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-2 u-form-phone u-form-group-84">
+                        <label for="phone-9e67" class="u-label u-label-108">Телефон</label>
+                        <input type="tel" pattern="\+?\d{0,2}[\s\(\-]?([0-9]{3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Номер телефона" id="phone-9e67" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-email u-form-group u-form-partition-factor-2 u-form-group-85">
+                        <label for="email-2b6c" class="u-label u-label-109">Адрес электронной почты</label>
+                        <input type="email" placeholder="Введите Ваш email адрес" id="email-2b6c" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    </div>
+                    <div class="u-form-group u-form-group-86">
+                        <label for="textarea-4d0b" class="u-label u-label-110">Вместе с заявление представляю следующие документы</label>
+                        <textarea placeholder="" rows="4" cols="50" id="textarea-4d0b" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></textarea>
+                    </div>
+                    <div class="u-align-left u-form-group u-form-submit u-form-group-87">
+                        <a href="#" class="u-btn u-btn-submit u-button-style u-btn-1">
+                            Сохранить<br>
+                        </a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-4" id="sec-1be9">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">Родственник 1 - Петров Петр Андреевич</a>
+            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Родственник 2 - Петрова Ольга Михайловна</a>
+            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-3">Родственник 3 - Петров Андрей Петрович</a>
+            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-4">Родственник 4 - Петрова Наталья Петрова</a>
+            <a href="../Home/NotFound" class="u-border-0 u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-5">Добавить родственника</a>
+        </div>
+    </section>
+    <section class="u-clearfix u-section-5" id="sec-b23e">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <a href="../Home/NotFound" class="u-btn u-button-style u-btn-1">Получить РВП</a>
+            <a href="../Home/NotFound" class="u-btn u-button-style u-btn-2">Получить ВНЖ</a>
+        </div>
+    </section>
+
+
+    <footer class="u-clearfix u-footer u-grey-80" id="sec-b567">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
+                <div class="u-gutter-0 u-layout">
+                    <div class="u-layout-row">
+                        <div class="u-align-left-sm u-align-left-xl u-align-left-xs u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
+                            <div class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-container-layout-1">
+                                <!--position-->
+                                <div data-position="" class="u-position u-position-1">
+                                    <!--block-->
+                                    <div class="u-block">
+                                        <div class="u-block-container u-clearfix">
+                                            <!--block_header-->
+                                            <h5 class="u-block-header u-text u-text-1"><!--block_header_content--> Block header <!--/block_header_content--></h5><!--/block_header--><!--block_content-->
+                                            <div class="u-block-content u-text u-text-2"><!--block_content_content--> Block content. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices. <!--/block_content_content--></div><!--/block_content-->
+                                        </div>
+                                    </div><!--/block-->
+                                </div><!--/position-->
+                            </div>
+                        </div>
+                        <div class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
+                            <div class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-2">
+                                <!--position-->
+                                <div data-position="" class="u-position u-position-2">
+                                    <!--block-->
+                                    <div class="u-block">
+                                        <div class="u-block-container u-clearfix">
+                                            <!--block_header-->
+                                            <h5 class="u-block-header u-text u-text-3"><!--block_header_content--> Block header <!--/block_header_content--></h5><!--/block_header--><!--block_content-->
+                                            <div class="u-block-content u-text u-text-4"><!--block_content_content--> Block content. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices. <!--/block_content_content--></div><!--/block_content-->
+                                        </div>
+                                    </div><!--/block-->
+                                </div><!--/position-->
+                            </div>
+                        </div>
+                        <div class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
+                            <div class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
+                                <!--position-->
+                                <div data-position="" class="u-position u-position-3">
+                                    <!--block-->
+                                    <div class="u-block">
+                                        <div class="u-block-container u-clearfix">
+                                            <!--block_header-->
+                                            <h5 class="u-block-header u-text u-text-5"><!--block_header_content--> Block header <!--/block_header_content--></h5><!--/block_header--><!--block_content-->
+                                            <div class="u-block-content u-text u-text-6"><!--block_content_content--> Block content. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices. <!--/block_content_content--></div><!--/block_content-->
+                                        </div>
+                                    </div><!--/block-->
+                                </div><!--/position-->
+                            </div>
+                        </div>
+                        <div class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
+                            <div class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-4">
+                                <!--position-->
+                                <div data-position="" class="u-position u-position-4">
+                                    <!--block-->
+                                    <div class="u-block">
+                                        <div class="u-block-container u-clearfix">
+                                            <!--block_header-->
+                                            <h5 class="u-block-header u-text u-text-7"><!--block_header_content--> Block header <!--/block_header_content--></h5><!--/block_header--><!--block_content-->
+                                            <div class="u-block-content u-text u-text-8"><!--block_content_content--> Block content. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices. <!--/block_content_content--></div><!--/block_content-->
+                                        </div>
+                                    </div><!--/block-->
+                                </div><!--/position-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><span style="height: 64px; width: 64px; margin-left: 0; margin-right: auto; margin-top: 0; background-image: none; right: 20px; bottom: 20px" class="u-back-to-top u-icon u-icon-circle u-opacity u-opacity-85 u-palette-1-base u-spacing-15" data-href="#">
+        <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 551.13 551.13"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-1d98"></use></svg>
+        <svg class="u-svg-content" enable-background="new 0 0 551.13 551.13" viewBox="0 0 551.13 551.13" xmlns="http://www.w3.org/2000/svg" id="svg-1d98"><path d="m275.565 189.451 223.897 223.897h51.668l-275.565-275.565-275.565 275.565h51.668z"></path></svg>
+    </span>
+</body>
+</html>

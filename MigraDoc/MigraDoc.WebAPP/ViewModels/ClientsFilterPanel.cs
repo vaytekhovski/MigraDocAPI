@@ -1,8 +1,10 @@
-﻿
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MigraDoc.Core.Models;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace MigraDoc.Core.ViewModels
+namespace MigraDoc.WebAPP.ViewModels
 {
     public class ClientsFilterPanel
     {
@@ -23,11 +25,11 @@ namespace MigraDoc.Core.ViewModels
         public string changedName { get; set; }
         public string orderBy { get; set; }
 
-        public IEnumerable<SelectListItem> Countrys { get; set; }
-        public IEnumerable<SelectListItem> DocumentTypes { get; set; }
-        public IEnumerable<SelectListItem> DocumentStatuses { get; set; }
-        public IEnumerable<SelectListItem> Sexs { get; set; }
-        public IEnumerable<SelectListItem> ChangedNames { get; set; }
-        public IEnumerable<SelectListItem> OrderBy { get; set; }
+        public List<SelectListItem> Countrys { get; set; }
+        public List<SelectListItem> DocumentTypes { get; set; }
+        public List<SelectListItem> DocumentStatuses { get; set; }
+        public List<SelectListItem> Sexs { get; set; }
+        public List<SelectListItem> ChangedNames { get; set; }
+        public List<SelectListItem> OrderBy { get; set; }
     }
 }

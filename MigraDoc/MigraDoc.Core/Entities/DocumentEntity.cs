@@ -9,6 +9,8 @@ namespace MigraDoc.Core.Entities
     {
         public Guid id { get; set; }
         public UserEntity UserEntity { get; set; }
+        public Guid UserDataEntityid { get; set; }
+        public Guid UserEntityid { get; set; }
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public DocumentStatusType Status { get; set; }
