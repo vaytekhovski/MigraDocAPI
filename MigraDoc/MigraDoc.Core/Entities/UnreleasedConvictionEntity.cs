@@ -9,7 +9,7 @@ namespace MigraDoc.Core.Entities
         public Guid id { get; set; }
         public string Place { get; set; }
         public DateTime StartDate { get; set; }
-        public TimeSpan Term { get; set; }
+        public string Term { get; set; }
         public DateTime EndDate { get; set; }
     }
 }

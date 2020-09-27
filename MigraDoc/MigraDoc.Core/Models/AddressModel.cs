@@ -13,6 +13,8 @@ namespace MigraDoc.Core.Models
         public string Sity { get; set; }
         public string District { get; set; }
         public string Street { get; set; }
+        public string HouseNumber { get; set; }
+
         public string Build { get; set; }
         public string Housing { get; set; }
         public string Flat { get; set; }

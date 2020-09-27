@@ -160,7 +160,7 @@ namespace MigraDoc.Core.CRUD
                         item.UserDataEntityid = exist_userdata.id;
                         item.UserEntityid = exist_user.id;
                         item.UserId = exist_user.id;
-                        item.Date = DateTime.Now;
+                        //item.Date = DateTime.Now;
                     }
 
                     var items_to_remove = db.Documents.Where(x => x.UserId == exist_user.id).ToList();

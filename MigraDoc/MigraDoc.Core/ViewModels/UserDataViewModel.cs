@@ -12,5 +12,8 @@ namespace MigraDoc.Core.ViewModels
         public string DocumentName { get; set; }
         public string DocumentStatus { get; set; }
         public string DocumentDate { get; set; }
+        public string DocumentBase { get; set; }
+        public string AdditionalInfo { get; set; }
+
     }
 }

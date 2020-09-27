@@ -139,6 +139,8 @@ namespace MigraDoc.WebAPP.Controllers
 
 
                 viewModel.DocumentId = doc.id;
+                viewModel.DocumentBase = doc.DocumentBase;
+                viewModel.AdditionalInfo = doc.AdditionalInfo;
                 viewModel.DocumentName = doc.Name;
                 viewModel.DocumentDate = doc.Date.ToShortDateString();
 
@@ -173,6 +175,11 @@ namespace MigraDoc.WebAPP.Controllers
         [HttpPost]
         public IActionResult Data(UserDataViewModel viewModel)
         {
+            var doc = viewModel.UserData.Documents.FirstOrDefault(x => x.id == viewModel.DocumentId);
+            viewModel.UserData.Documents.Remove(doc);
+            doc.AdditionalInfo = viewModel.AdditionalInfo;
+            doc.DocumentBase = viewModel.DocumentBase;
+            viewModel.UserData.Documents.Add(doc);
             try
             {
                 UserDataRepository.UpdateUserData(viewModel.UserData);
@@ -183,6 +190,12 @@ namespace MigraDoc.WebAPP.Controllers
                 Console.WriteLine(e.GetMessageObject());
                 return RedirectToAction("NotFound");
             }
+
+            viewModel.DocumentId = doc.id;
+            viewModel.DocumentBase = doc.DocumentBase;
+            viewModel.AdditionalInfo = doc.AdditionalInfo;
+            viewModel.DocumentName = doc.Name;
+            viewModel.DocumentDate = doc.Date.ToShortDateString();
             return View(viewModel);
         }
 

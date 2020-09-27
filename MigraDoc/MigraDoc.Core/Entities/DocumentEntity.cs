@@ -16,6 +16,7 @@ namespace MigraDoc.Core.Entities
         public DocumentStatusType Status { get; set; }
         public string DocumentBase { get; set; }
         public DateTime Date { get; set; }
+        public string AdditionalInfo { get; set; }
 
     }
 }
