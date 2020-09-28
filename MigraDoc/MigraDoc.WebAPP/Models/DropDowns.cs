@@ -14,6 +14,7 @@ namespace MigraDoc.WebAPP.Models
         public static List<Field> Sexs = new List<Field>();
         public static List<Field> ChangedNames = new List<Field>();
         public static List<Field> OrderBy = new List<Field>();
+        public static List<Field> RelativeTypes = new List<Field>();
 
         static DropDowns()
         {
@@ -23,6 +24,15 @@ namespace MigraDoc.WebAPP.Models
             InitiateSexs();
             InitiateChangedNames();
             InitiateOrderBy();
+            InitiateRelativeTypes();
+        }
+
+        private static void InitiateRelativeTypes()
+        {
+            RelativeTypes.Add(new Field { Value = "Муж (жена)", Name = "Муж (жена)" });
+            RelativeTypes.Add(new Field { Value = "Родитель", Name = "Родитель" });
+            RelativeTypes.Add(new Field { Value = "Ребенок", Name = "Ребенок" });
+            RelativeTypes.Add(new Field { Value = "Брат (сестра)", Name = "Брат (сестра)" });
         }
 
         private static void InitiateOrderBy()
@@ -92,6 +102,10 @@ namespace MigraDoc.WebAPP.Models
         public static IEnumerable<SelectListItem> GetOrderBy()
         {
             return OrderBy.Select(x => new SelectListItem { Text = x.Name, Value = x.Value }).ToList();
+        }
+        public static IEnumerable<SelectListItem> GetRelativeTypes()
+        {
+            return RelativeTypes.Select(x => new SelectListItem { Text = x.Name, Value = x.Value }).ToList();
         }
     }
 }

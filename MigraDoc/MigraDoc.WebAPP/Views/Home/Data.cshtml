@@ -557,11 +557,11 @@
     </section>
     <section class="u-align-center u-clearfix u-section-4" id="sec-1be9">
         <div class="u-clearfix u-sheet u-sheet-1">
-            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">Родственник 1 - Петров Петр Андреевич</a>
-            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-2">Родственник 2 - Петрова Ольга Михайловна</a>
-            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-3">Родственник 3 - Петров Андрей Петрович</a>
-            <a href="../Home/NotFound" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-4">Родственник 4 - Петрова Наталья Петрова</a>
-            <a href="../Home/NotFound" class="u-border-0 u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-5">Добавить родственника</a>
+            @foreach (var relative in Model.UserData.Relatives)
+            {
+                <a href="../Home/Relative?UserId=@relative.UserId&DocumentId=@Model.DocumentId&RelativeId=@relative.id" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">Родственник 1 - @relative.Surname @relative.FirstName @relative.MiddleName</a>
+            }
+            <a href="../Home/CreateRelative?UserId=@Model.UserData.User.id&DocumentId=@Model.DocumentId" class="u-border-0 u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-5">Добавить родственника</a>
         </div>
     </section>
     <section class="u-clearfix u-section-5" id="sec-b23e">

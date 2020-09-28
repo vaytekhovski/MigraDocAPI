@@ -137,7 +137,6 @@ namespace MigraDoc.WebAPP.Controllers
                 viewModel.UserData = UserDataRepository.GetUserData(UserId);
                 var doc = viewModel.UserData.Documents.Where(x => x.id == DocumentId).FirstOrDefault();
 
-
                 viewModel.DocumentId = doc.id;
                 viewModel.DocumentBase = doc.DocumentBase;
                 viewModel.AdditionalInfo = doc.AdditionalInfo;
@@ -199,7 +198,7 @@ namespace MigraDoc.WebAPP.Controllers
             return View(viewModel);
         }
 
-        public IActionResult CreateRelative(Guid UserId)
+        public IActionResult CreateRelative(Guid UserId, Guid DocumentId)
         {
             Guid RelativeId = new Guid();
             try
@@ -212,37 +211,101 @@ namespace MigraDoc.WebAPP.Controllers
                 return RedirectToAction("NotFound");
             }
 
-            return RedirectToAction("Relative", new { UserId, RelativeId });
+            return RedirectToAction("Relative", new { UserId, DocumentId, RelativeId });
         }
 
-        public IActionResult RemoveRelative(Guid RelativeId)
+        public IActionResult RemoveRelative(Guid RelativeId, Guid DocumentId)
         {
             Guid UserId = UserDataRepository.RemoveRelative(RelativeId);
-            return RedirectToAction("Data", UserId);
+            return RedirectToAction("Data", new { UserId, DocumentId });
         }
 
         [HttpGet]
-        public IActionResult Relative(Guid UserId, Guid RelativeId)
+        public IActionResult Relative(Guid UserId, Guid DocumentId, Guid RelativeId)
         {
-            UserDataEntity viewModel = new UserDataEntity();
+            RelativeViewModel viewModel = new RelativeViewModel();
             try
             {
-                viewModel = UserDataRepository.GetUserRelative(UserId, RelativeId);
+                viewModel.UserData = UserDataRepository.GetUserData(UserId);
+                viewModel.Relative = viewModel.UserData.Relatives.FirstOrDefault(x => x.id == RelativeId);
+
+                viewModel.RelativeId = RelativeId;
+
+                switch (viewModel.Relative.KinsfolkType)
+                {
+                    case Core.Models.KinsfolkType.parent:
+                        viewModel.Relative.RelativeType = "Родитель";
+                        break;
+                    case Core.Models.KinsfolkType.brother:
+                        viewModel.Relative.RelativeType = "Брат (сестра)";
+
+                        break;
+                    case Core.Models.KinsfolkType.wife:
+                        viewModel.Relative.RelativeType = "Муж (жена)";
+
+                        break;
+                    case Core.Models.KinsfolkType.child:
+                        viewModel.Relative.RelativeType = "Ребенок";
+
+                        break;
+                    default:
+                        break;
+                }
+
+                var doc = viewModel.UserData.Documents.Where(x => x.id == DocumentId).FirstOrDefault();
+
+                viewModel.DocumentId = doc.id;
+                viewModel.DocumentBase = doc.DocumentBase;
+                viewModel.AdditionalInfo = doc.AdditionalInfo;
+                viewModel.DocumentName = doc.Name;
+                viewModel.DocumentDate = doc.Date.ToShortDateString();
             }
             catch (UserNotFoundException e)
             {
                 Console.WriteLine(e.GetMessageObject());
                 return RedirectToAction("NotFound");
             }
+
+            ViewBag.RelativeTypes = DropDowns.GetRelativeTypes();
+
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Relative(UserDataEntity viewModel)
+        public IActionResult Relative(RelativeViewModel viewModel)
         {
             try
             {
-                UserDataRepository.UpdateUserData(viewModel);
+                var UserData = UserDataRepository.GetUserData(viewModel.Relative.UserId);
+                var relative = UserData.Relatives.FirstOrDefault(x => x.id == viewModel.RelativeId);
+                UserData.Relatives.Remove(relative);
+                viewModel.Relative.id = relative.id;
+                viewModel.Relative.NationalityId = relative.NationalityId;
+                viewModel.Relative.CountryOfResidenceId = relative.CountryOfResidenceId;
+                switch (viewModel.Relative.RelativeType)
+                {
+                    case "Муж (жена)":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.wife;
+                        break;
+                    case "Родитель":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.parent;
+
+                        break;
+                    case "Ребенок":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.child;
+
+                        break;
+                    case "Брат (сестра)":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.brother;
+
+                        break;
+                    default:
+                        break;
+                }
+
+                UserData.Relatives.Add(viewModel.Relative);
+
+                UserDataRepository.UpdateUserData(UserData);
             }
             catch (UserNotFoundException e)
             {
@@ -250,7 +313,7 @@ namespace MigraDoc.WebAPP.Controllers
                 return RedirectToAction("NotFound");
             }
 
-            return View(viewModel);
+            return RedirectToAction("Data", new { UserId = viewModel.UserData.id, DocumentId = viewModel.DocumentId });
         }
 
         public IActionResult ChangeDocumentStatus(Guid DocumentId)

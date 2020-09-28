@@ -147,10 +147,7 @@ namespace MigraDoc.Core.CRUD
                     {
                         item.UserId = exist_user.id;
                     }
-
-                    var items_to_remove = db.Relatives.Where(x => x.UserId == exist_user.id).ToList();
-                    db.Relatives.RemoveRange(items_to_remove);
-                    db.Relatives.AddRange(userData.Relatives);
+                    db.Relatives.UpdateRange(userData.Relatives);
                 }
 
                 if(userData.Documents != null)
@@ -285,7 +282,7 @@ namespace MigraDoc.Core.CRUD
                 userData.NameChanges = db.NameChanges.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.Nationality = db.Nationalities.AsNoTracking().Where(x => x.id == userData.NationalityId).FirstOrDefault();
                 userData.IdentityDocument = db.IdentityDocuments.AsNoTracking().Where(x => x.id == userData.IdentityDocumentId).FirstOrDefault();
-                userData.Relatives = db.Relatives.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
+                userData.Relatives = db.Relatives.AsNoTracking().Include(x=>x.Nationality).Include(x=>x.CountryOfResidence).Where(x => x.UserId == userData.UserId).ToList();
                 userData.Works = db.Works.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.EducationLevel = db.EducationLevels.AsNoTracking().Where(x => x.id == userData.EducationLevelId).FirstOrDefault();
                 userData.WorkPermit = db.WorkPermits.AsNoTracking().Where(x => x.id == userData.WorkPermitId).FirstOrDefault();
@@ -324,7 +321,10 @@ namespace MigraDoc.Core.CRUD
 
                 var Relative = new RelativesEntity
                 {
-                    UserId = UserId
+                    UserId = UserId,
+                    CountryOfResidence = new AddressEntity(),
+                    Nationality = new NationalityEntity()
+
                 };
                 db.Relatives.Add(Relative);
                 db.SaveChanges();
@@ -353,7 +353,7 @@ namespace MigraDoc.Core.CRUD
 
         }
 
-        public UserDataEntity GetUserRelative(Guid UserId, Guid RelativeId)
+        public UserDataEntity GetUserRelative(Guid UserId)
         {
             var userData = new UserDataEntity();
             using (DatabaseContext db = new DatabaseContext())
@@ -372,7 +372,8 @@ namespace MigraDoc.Core.CRUD
                     .AsNoTracking()
                     .Where(x => x.UserId == user.id)
                     .Include(x => x.User)
-                    .Include(x => x.Relatives.Where(y => y.id == RelativeId))
+                    .Include(x => x.Relatives)
+                    .Include(x => x.Nationality)
                     .Include(x => x.Documents)
                     .FirstOrDefault();
 

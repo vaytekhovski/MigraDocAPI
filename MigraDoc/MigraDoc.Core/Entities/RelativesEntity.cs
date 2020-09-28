@@ -1,6 +1,7 @@
 ﻿using MigraDoc.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace MigraDoc.Core.Entities
@@ -11,6 +12,8 @@ namespace MigraDoc.Core.Entities
         public UserEntity UserEntity { get; set; }
         public Guid UserId { get; set; }
         public KinsfolkType KinsfolkType { get; set; }
+        [NotMapped]
+        public string RelativeType { get; set; }
         public bool alive { get; set; }
         public ChildType ChildType { get; set; }
         public SexType SexType { get; set; }
