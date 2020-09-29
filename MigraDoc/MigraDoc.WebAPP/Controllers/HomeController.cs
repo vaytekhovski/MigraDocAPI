@@ -231,19 +231,40 @@ namespace MigraDoc.WebAPP.Controllers
 
                 viewModel.RelativeId = RelativeId;
 
+
                 switch (viewModel.Relative.KinsfolkType)
                 {
-                    case Core.Models.KinsfolkType.parent:
-                        viewModel.Relative.RelativeType = "Родитель";
-                        break;
-                    case Core.Models.KinsfolkType.brother:
-                        viewModel.Relative.RelativeType = "Брат (сестра)";
+                    case Core.Models.KinsfolkType.husbend:
+                        viewModel.Relative.RelativeType = "Муж";
+
                         break;
                     case Core.Models.KinsfolkType.wife:
-                        viewModel.Relative.RelativeType = "Муж (жена)";
+                        viewModel.Relative.RelativeType = "Жена";
+
                         break;
-                    case Core.Models.KinsfolkType.child:
-                        viewModel.Relative.RelativeType = "Ребенок";
+                    case Core.Models.KinsfolkType.son:
+                        viewModel.Relative.RelativeType = "Сын";
+
+                        break;
+                    case Core.Models.KinsfolkType.daughter:
+                        viewModel.Relative.RelativeType = "Дочь";
+
+                        break;
+                    case Core.Models.KinsfolkType.mother:
+                        viewModel.Relative.RelativeType = "Мать";
+
+                        break;
+                    case Core.Models.KinsfolkType.father:
+                        viewModel.Relative.RelativeType = "Отец";
+
+                        break;
+                    case Core.Models.KinsfolkType.brother:
+                        viewModel.Relative.RelativeType = "Брат";
+
+                        break;
+                    case Core.Models.KinsfolkType.sister:
+                        viewModel.Relative.RelativeType = "Сестра";
+
                         break;
                     default:
                         break;
@@ -281,20 +302,29 @@ namespace MigraDoc.WebAPP.Controllers
                 viewModel.Relative.CountryOfResidenceId = relative.CountryOfResidenceId;
                 switch (viewModel.Relative.RelativeType)
                 {
-                    case "Муж (жена)":
+                    case "Муж":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.husbend;
+                        break;
+                    case "Жена":
                         viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.wife;
                         break;
-                    case "Родитель":
-                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.parent;
-
+                    case "Сын":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.son;
                         break;
-                    case "Ребенок":
-                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.child;
-
+                    case "Дочь":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.daughter;
                         break;
-                    case "Брат (сестра)":
+                    case "Отец":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.father;
+                        break;
+                    case "Мать":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.mother;
+                        break;
+                    case "Брат":
                         viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.brother;
-
+                        break;
+                    case "Сестра":
+                        viewModel.Relative.KinsfolkType = Core.Models.KinsfolkType.sister;
                         break;
                     default:
                         break;
