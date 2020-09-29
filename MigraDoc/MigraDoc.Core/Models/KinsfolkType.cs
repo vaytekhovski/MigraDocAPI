@@ -6,9 +6,13 @@ namespace MigraDoc.Core.Models
 {
     public enum KinsfolkType
     {
-        parent,
-        brother,
+        husbend,
         wife,
-        child
+        son,
+        daughter,
+        mother,
+        father,
+        brother,
+        sister
     }
 }

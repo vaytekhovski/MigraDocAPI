@@ -7,6 +7,7 @@ using MigraDoc.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace MigraDoc.Core.CRUD
@@ -227,7 +228,7 @@ namespace MigraDoc.Core.CRUD
 
                 exist_userdata.UpdateDate = DateTime.Now;
                 db.SaveChanges();
-                userData = exist_userdata;
+                userData = GetUserData(exist_user.telegramUserId);
             }
 
             return userData;
@@ -540,5 +541,43 @@ namespace MigraDoc.Core.CRUD
             return UserId;
         }
 
+        public DocumentEntity GetDocument(Guid DocumentId)
+        {
+            DocumentEntity document = new DocumentEntity();
+            using(DatabaseContext db = new DatabaseContext())
+            {
+                document = db.Documents.AsNoTracking().FirstOrDefault(x => x.id == DocumentId);
+
+                if(document == null)
+                {
+                    throw new UserNotFoundException();
+                }
+            }
+
+            return document;
+        }
+
+        public void AddWork(Guid UserId)
+        {
+            using(DatabaseContext db = new DatabaseContext())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .Where(x => x.id == UserId)
+                    .FirstOrDefault();
+
+                if (user == null)
+                {
+                    throw new UserNotFoundException();
+                }
+
+                db.Works.Add(new WorkEntity
+                {
+                    Address = new AddressEntity(),
+                    UserId = UserId
+                });
+                db.SaveChanges();
+            }
+        }
     }
 }

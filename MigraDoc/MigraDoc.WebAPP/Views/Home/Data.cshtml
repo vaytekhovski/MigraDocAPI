@@ -211,10 +211,10 @@
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-19">
                         <label for="text-0795" class="u-label u-label-32">Основание приобретения</label>
                         <br />
-                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, 0)
+                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, "beforeSSSR")
                         @Html.Label("до СССР")
                         <br />
-                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, 1)
+                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, "afterSSSR")
                         @Html.Label("После СССР")
                     </div>
                     <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-20">
@@ -222,7 +222,7 @@
                         <input type="date" placeholder="MM/DD/YYYY" id="date-9710" asp-for="@Model.UserData.Nationality.DateOfReceiving" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                     </div>
                     <div class="u-form-checkbox u-form-group u-form-group-21">
-                        <input type="checkbox" id="checkbox-54e7" asp-for="@Model.UserData.Nationality.StatelessPerson" value="true">
+                        <input type="checkbox" id="checkbox-54e7" asp-for="@Model.UserData.Nationality.StatelessPerson">
                         <label for="checkbox-54e7" class="u-label u-label-34">Являюсь лицом без гражданства</label>
                     </div>
                     <div class="u-form-group u-form-partition-factor-3 u-form-group-22">
@@ -303,29 +303,33 @@
                     @for (int i = 0; i < Model.UserData.Works.Count; i++)
                     {
                         <input type="hidden" value="@Model.UserData.Works[i].id">
-                        <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-35">
+                        <br />
+
+                        <div class="u-form-date u-form-group u-form-partition-factor-5 u-form-group-35">
                             <label for="date-a323" class="u-label u-label-52">Дата приема на работу</label>
                             <input type="date" placeholder="MM/DD/YYYY" id="date-a323" asp-for="@Model.UserData.Works[i].Start" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                         </div>
-                        <div class="u-form-date u-form-group u-form-partition-factor-4 u-form-group-36">
+                        <div class="u-form-date u-form-group u-form-partition-factor-5 u-form-group-36">
                             <label for="date-2d44" class="u-label u-label-53">Дата увольнения</label>
                             <input type="date" placeholder="MM/DD/YYYY" id="date-2d44" asp-for="@Model.UserData.Works[i].End" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                         </div>
-                        <div class="u-form-group u-form-partition-factor-4 u-form-group-37">
-                            <label for="text-0266" class="u-label u-label-54">Должность</label>
+                        <div class="u-form-group u-form-partition-factor-5 u-form-group-37">
+                            <label for="text-9438" class="u-label u-label-54">Название организации</label>
+                            <input type="text" placeholder="" id="text-9438" asp-for="@Model.UserData.Works[i].OrganizationName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-5 u-form-group-38">
+                            <label for="text-0266" class="u-label u-label-55">Должность</label>
                             <input type="text" placeholder="" id="text-0266" asp-for="@Model.UserData.Works[i].Position" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                         </div>
-
-                        <div class="u-form-group u-form-partition-factor-4 u-form-group-37">
-                            <label for="text-0266" class="u-label u-label-54">Название организации</label>
-                            <input type="text" placeholder="" id="text-0266" asp-for="@Model.UserData.Works[i].OrganizationName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                        </div>
-                        <div class="u-form-group u-form-partition-factor-4 u-form-group-38">
-                            <label for="text-d90a" class="u-label u-label-55">Адрес места работы</label>
+                        <div class="u-form-group u-form-partition-factor-5 u-form-group-39">
+                            <label for="text-d90a" class="u-label u-label-56">Адрес места работы</label>
                             <input type="text" placeholder="" id="text-d90a" asp-for="@Model.UserData.Works[i].Address.Country" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                         </div>
                     }
                     <br>
+                    <button class="u-btn u-btn-submit u-button-style u-btn-1" type="submit" formaction="AddWork" formmethod="post">Добавить еще работу</button>
+                    <a href="../Home/AddWork?DocumentId=@Model.DocumentId">Добавить еще работу</a>
+                    <br />
                     <h5>Уровень образования</h5>
                     <br />
                     <div class="u-form-group u-form-partition-factor-2 u-form-radiobutton u-form-group-39">

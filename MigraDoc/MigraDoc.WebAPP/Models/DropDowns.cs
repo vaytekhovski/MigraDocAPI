@@ -29,10 +29,14 @@ namespace MigraDoc.WebAPP.Models
 
         private static void InitiateRelativeTypes()
         {
-            RelativeTypes.Add(new Field { Value = "Муж (жена)", Name = "Муж (жена)" });
-            RelativeTypes.Add(new Field { Value = "Родитель", Name = "Родитель" });
-            RelativeTypes.Add(new Field { Value = "Ребенок", Name = "Ребенок" });
-            RelativeTypes.Add(new Field { Value = "Брат (сестра)", Name = "Брат (сестра)" });
+            RelativeTypes.Add(new Field { Value = "Муж", Name = "Муж" });
+            RelativeTypes.Add(new Field { Value = "Жена", Name = "Жена" });
+            RelativeTypes.Add(new Field { Value = "Сын", Name = "Сын" });
+            RelativeTypes.Add(new Field { Value = "Дочь", Name = "Дочь" });
+            RelativeTypes.Add(new Field { Value = "Мать", Name = "Мать" });
+            RelativeTypes.Add(new Field { Value = "Отец", Name = "Отец" });
+            RelativeTypes.Add(new Field { Value = "Брат", Name = "Брат" });
+            RelativeTypes.Add(new Field { Value = "Сестра", Name = "Сестра" });
         }
 
         private static void InitiateOrderBy()

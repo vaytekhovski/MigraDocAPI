@@ -181,7 +181,7 @@ namespace MigraDoc.WebAPP.Controllers
             viewModel.UserData.Documents.Add(doc);
             try
             {
-                UserDataRepository.UpdateUserData(viewModel.UserData);
+                viewModel.UserData = UserDataRepository.UpdateUserData(viewModel.UserData);
 
             }
             catch (UserNotFoundException e)
@@ -238,15 +238,12 @@ namespace MigraDoc.WebAPP.Controllers
                         break;
                     case Core.Models.KinsfolkType.brother:
                         viewModel.Relative.RelativeType = "Брат (сестра)";
-
                         break;
                     case Core.Models.KinsfolkType.wife:
                         viewModel.Relative.RelativeType = "Муж (жена)";
-
                         break;
                     case Core.Models.KinsfolkType.child:
                         viewModel.Relative.RelativeType = "Ребенок";
-
                         break;
                     default:
                         break;
@@ -330,6 +327,57 @@ namespace MigraDoc.WebAPP.Controllers
             }
 
             return RedirectToAction("Data", new { UserId, DocumentId });
+        }
+
+        [HttpGet]
+        public IActionResult AddWork(Guid DocumentId)
+        {
+            DocumentEntity doc = new DocumentEntity();
+            try
+            {
+                doc = UserDataRepository.GetDocument(DocumentId);
+                UserDataRepository.AddWork(doc.UserId);
+            }
+            catch(UserNotFoundException e)
+            {
+                Console.WriteLine(e.GetMessageObject());
+                return RedirectToAction("NotFound");
+            }
+
+            return RedirectToAction("Data", new { doc.UserId, DocumentId });
+        }
+
+        [HttpPost]
+        public IActionResult AddWork(UserDataViewModel viewModel)
+        {
+            var doc = viewModel.UserData.Documents.FirstOrDefault(x => x.id == viewModel.DocumentId);
+            viewModel.UserData.Documents.Remove(doc);
+            doc.AdditionalInfo = viewModel.AdditionalInfo;
+            doc.DocumentBase = viewModel.DocumentBase;
+            viewModel.UserData.Documents.Add(doc);
+            try
+            {
+                viewModel.UserData.Works.Add(new WorkEntity
+                {
+                    Address = new AddressEntity()
+                });
+                viewModel.UserData = UserDataRepository.UpdateUserData(viewModel.UserData);
+
+            }
+            catch (UserNotFoundException e)
+            {
+                Console.WriteLine(e.GetMessageObject());
+                return RedirectToAction("NotFound");
+            }
+
+            viewModel.DocumentId = doc.id;
+            viewModel.DocumentBase = doc.DocumentBase;
+            viewModel.AdditionalInfo = doc.AdditionalInfo;
+            viewModel.DocumentName = doc.Name;
+            viewModel.DocumentDate = doc.Date.ToShortDateString();
+
+            return RedirectToAction("Data", new { viewModel.UserData.UserId, viewModel.DocumentId });
+
         }
     }
 }
