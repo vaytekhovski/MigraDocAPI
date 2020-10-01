@@ -8,6 +8,7 @@ namespace MigraDoc.Core.Models
     {
         public Guid id { get; set; }
         public string SertificateName { get; set; }
-        public RussianKnowledgeType RussianKnowledge { get; set; }
+        public bool rf { get; set; }
+        public bool ussr { get; set; }
     }
 }
