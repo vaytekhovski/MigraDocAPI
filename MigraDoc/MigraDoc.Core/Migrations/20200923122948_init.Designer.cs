@@ -299,7 +299,7 @@ namespace MigraDoc.Core.Migrations
                     b.ToTable("NameChanges");
                 });
 
-            modelBuilder.Entity("MigraDoc.Core.Entities.NationalityEntity", b =>
+            modelBuilder.Entity("MigraDoc.Core.Entities.CitizenshipEntity", b =>
                 {
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
@@ -367,7 +367,7 @@ namespace MigraDoc.Core.Migrations
                     b.Property<bool>("MiddleNameAbsent")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<Guid>("NationalityId")
+                    b.Property<Guid>("CitizenshipId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PlaceOfBirth")
@@ -398,7 +398,7 @@ namespace MigraDoc.Core.Migrations
 
                     b.HasIndex("CountryOfResidenceId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("CitizenshipId");
 
                     b.HasIndex("UserDataEntityid");
 
@@ -487,7 +487,7 @@ namespace MigraDoc.Core.Migrations
                     b.Property<bool>("MiddleNameAbsent")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<Guid>("NationalityId")
+                    b.Property<Guid>("CitizenshipId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PlaceOfBirth")
@@ -527,7 +527,7 @@ namespace MigraDoc.Core.Migrations
 
                     b.HasIndex("IncomeId");
 
-                    b.HasIndex("NationalityId");
+                    b.HasIndex("CitizenshipId");
 
                     b.HasIndex("ResidenceAddressId");
 
@@ -676,9 +676,9 @@ namespace MigraDoc.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MigraDoc.Core.Entities.NationalityEntity", "Nationality")
+                    b.HasOne("MigraDoc.Core.Entities.CitizenshipEntity", "Citizenship")
                         .WithMany()
-                        .HasForeignKey("NationalityId")
+                        .HasForeignKey("CitizenshipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -713,9 +713,9 @@ namespace MigraDoc.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MigraDoc.Core.Entities.NationalityEntity", "Nationality")
+                    b.HasOne("MigraDoc.Core.Entities.CitizenshipEntity", "Citizenship")
                         .WithMany()
-                        .HasForeignKey("NationalityId")
+                        .HasForeignKey("CitizenshipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

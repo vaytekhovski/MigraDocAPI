@@ -256,7 +256,7 @@ namespace MigraDoc.Core.Migrations
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     CountryOfBirth = table.Column<string>(nullable: true),
                     PlaceOfBirth = table.Column<string>(nullable: true),
-                    NationalityId = table.Column<Guid>(nullable: false),
+                    CitizenshipId = table.Column<Guid>(nullable: false),
                     Creed = table.Column<string>(nullable: true),
                     IdentityDocumentId = table.Column<Guid>(nullable: false),
                     EducationLevelId = table.Column<Guid>(nullable: false),
@@ -294,8 +294,8 @@ namespace MigraDoc.Core.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserDatas_Nationalities_NationalityId",
-                        column: x => x.NationalityId,
+                        name: "FK_UserDatas_Nationalities_CitizenshipId",
+                        column: x => x.CitizenshipId,
                         principalTable: "Nationalities",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -393,7 +393,7 @@ namespace MigraDoc.Core.Migrations
                     MiddleNameAbsent = table.Column<bool>(nullable: false),
                     MiddleName = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
-                    NationalityId = table.Column<Guid>(nullable: false),
+                    CitizenshipId = table.Column<Guid>(nullable: false),
                     PlaceOfBirth = table.Column<string>(nullable: true),
                     CountryOfResidenceId = table.Column<Guid>(nullable: false),
                     WorkOrStudyPosition = table.Column<string>(nullable: true),
@@ -410,8 +410,8 @@ namespace MigraDoc.Core.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Relatives_Nationalities_NationalityId",
-                        column: x => x.NationalityId,
+                        name: "FK_Relatives_Nationalities_CitizenshipId",
+                        column: x => x.CitizenshipId,
                         principalTable: "Nationalities",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -499,9 +499,9 @@ namespace MigraDoc.Core.Migrations
                 column: "CountryOfResidenceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Relatives_NationalityId",
+                name: "IX_Relatives_CitizenshipId",
                 table: "Relatives",
-                column: "NationalityId");
+                column: "CitizenshipId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Relatives_UserDataEntityid",
@@ -529,9 +529,9 @@ namespace MigraDoc.Core.Migrations
                 column: "IncomeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserDatas_NationalityId",
+                name: "IX_UserDatas_CitizenshipId",
                 table: "UserDatas",
-                column: "NationalityId");
+                column: "CitizenshipId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserDatas_ResidenceAddressId",

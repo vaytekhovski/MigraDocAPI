@@ -11,7 +11,7 @@ namespace MigraDoc.Core.Converters
         UserConverter UserConverter = new UserConverter();
         EducationConverter EducationConverter = new EducationConverter();
         NameChangesConverter NameChangesConverter = new NameChangesConverter();
-        NationalityConverter NationalityConverter = new NationalityConverter();
+        CitizenshipConverter CitizenshipConverter = new CitizenshipConverter();
         IdentityDocumentConverter IdentityDocumentConverter = new IdentityDocumentConverter();
         RelativesConverter RelativesConverter = new RelativesConverter();
         WorkConverter WorkConverter = new WorkConverter();
@@ -47,6 +47,8 @@ namespace MigraDoc.Core.Converters
                 
             }
 
+            model.Nationality = entity.Nationality;
+
             model.Sex = entity.Sex;
             if(entity.Education != null)
             {
@@ -66,7 +68,6 @@ namespace MigraDoc.Core.Converters
             model.FirstName = entity.FirstName;
             model.Surname = entity.Surname;
             model.MiddleName = entity.MiddleName;
-            model.MiddleNameAbsent = entity.MiddleNameAbsent;
 
             model.EngFirstName = entity.EngFirstName;
             model.EngSurname = entity.EngSurname;
@@ -75,9 +76,9 @@ namespace MigraDoc.Core.Converters
             model.CountryOfBirth = entity.CountryOfBirth;
             model.PlaceOfBirth = entity.PlaceOfBirth;
 
-            if(entity.Nationality != null)
+            if(entity.Citizenship != null)
             {
-                model.Nationality = NationalityConverter.entityToModel(entity.Nationality, null);
+                model.Citizenship = CitizenshipConverter.entityToModel(entity.Citizenship, null);
             }
 
             model.Creed = entity.Creed;
@@ -176,6 +177,8 @@ namespace MigraDoc.Core.Converters
                 }
             }
 
+            entity.Nationality = model.Nationality;
+
             if(model.FamilyStatus != null)
             {
                 entity.FamilyStatus = FamilyStatusConverter.modelToEntity(null, model.FamilyStatus);
@@ -195,7 +198,6 @@ namespace MigraDoc.Core.Converters
             entity.FirstName = model.FirstName;
             entity.Surname = model.Surname;
             entity.MiddleName = model.MiddleName;
-            entity.MiddleNameAbsent = model.MiddleNameAbsent;
 
             entity.EngFirstName = model.EngFirstName;
             entity.EngSurname = model.EngSurname;
@@ -204,9 +206,9 @@ namespace MigraDoc.Core.Converters
             entity.CountryOfBirth = model.CountryOfBirth;
             entity.PlaceOfBirth = model.PlaceOfBirth;
 
-            if (model.Nationality != null)
+            if (model.Citizenship != null)
             {
-                entity.Nationality = NationalityConverter.modelToEntity(null, model.Nationality);
+                entity.Citizenship = CitizenshipConverter.modelToEntity(null, model.Citizenship);
             }
 
             entity.Creed = model.Creed;

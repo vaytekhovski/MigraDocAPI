@@ -53,7 +53,7 @@
                             <div class="u-container-layout u-container-layout-2">
                                 <h3 class="u-text u-text-2">@Model.UserData.Surname @Model.UserData.FirstName @Model.UserData.MiddleName</h3>
                                 <h6 class="u-text u-text-3">@Model.UserData.EngSurname @Model.UserData.EngFirstName</h6>
-                                <h6 class="u-text u-text-4">@Model.UserData.Nationality.Name</h6>
+                                <h6 class="u-text u-text-4">@Model.UserData.Citizenship.Name</h6>
                                 <h5 class="u-text u-text-5">@Model.DocumentStatus</h5>
                                 <h6 class="u-text u-text-6"></h6>
                                 @if (@Model.DocumentStatus == "Не начат")
@@ -202,40 +202,40 @@
                     <h5>В гражданстве (подданстве) какого иностранного госудава состоите в настоящее время (состояли ранее)</h5>
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-17">
                         <label for="text-99a2" class="u-label u-label-30">Государство</label>
-                        <input type="text" placeholder="" id="text-99a2" asp-for="@Model.UserData.Nationality.Name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="" id="text-99a2" asp-for="@Model.UserData.Citizenship.Name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-18">
                         <label for="text-8b09" class="u-label u-label-31">Место приобретения</label>
-                        <input type="text" placeholder="" id="text-8b09" asp-for="@Model.UserData.Nationality.PlaceOfReceiving" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="" id="text-8b09" asp-for="@Model.UserData.Citizenship.PlaceOfReceiving" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-19">
                         <label for="text-0795" class="u-label u-label-32">Основание приобретения</label>
                         <br />
-                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, "beforeSSSR")
+                        @Html.RadioButtonFor(m => m.UserData.Citizenship.Type, "beforeSSSR")
                         @Html.Label("до СССР")
                         <br />
-                        @Html.RadioButtonFor(m => m.UserData.Nationality.Type, "afterSSSR")
+                        @Html.RadioButtonFor(m => m.UserData.Citizenship.Type, "afterSSSR")
                         @Html.Label("После СССР")
                     </div>
                     <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-20">
                         <label for="date-9710" class="u-label u-label-33">Дата приобретения</label>
-                        <input type="date" placeholder="MM/DD/YYYY" id="date-9710" asp-for="@Model.UserData.Nationality.DateOfReceiving" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        <input type="date" placeholder="MM/DD/YYYY" id="date-9710" asp-for="@Model.UserData.Citizenship.DateOfReceiving" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                     </div>
                     <div class="u-form-checkbox u-form-group u-form-group-21">
-                        <input type="checkbox" id="checkbox-54e7" asp-for="@Model.UserData.Nationality.StatelessPerson">
+                        <input type="checkbox" id="checkbox-54e7" asp-for="@Model.UserData.Citizenship.StatelessPerson">
                         <label for="checkbox-54e7" class="u-label u-label-34">Являюсь лицом без гражданства</label>
                     </div>
                     <div class="u-form-group u-form-partition-factor-3 u-form-group-22">
                         <label for="text-4160" class="u-label u-label-35">Основание утраты</label>
-                        <input type="text" placeholder="" id="text-4160" asp-for="@Model.UserData.Nationality.LossReason" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="" id="text-4160" asp-for="@Model.UserData.Citizenship.LossReason" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group u-form-partition-factor-3 u-form-group-23">
                         <label for="text-5194" class="u-label u-label-36">Место утраты</label>
-                        <input type="text" placeholder="" id="text-5194" asp-for="@Model.UserData.Nationality.LossCountry" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="" id="text-5194" asp-for="@Model.UserData.Citizenship.LossCountry" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-24">
                         <label for="text-81a1" class="u-label u-label-37">Дата утраты</label>
-                        <input type="date" placeholder="" id="text-81a1" asp-for="@Model.UserData.Nationality.LossDate" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="date" placeholder="" id="text-81a1" asp-for="@Model.UserData.Citizenship.LossDate" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <h5>Пол</h5>
                     <div class="u-form-group u-form-radiobutton u-form-group-25">
@@ -289,6 +289,14 @@
                     <div class="u-form-group u-form-partition-factor-3 u-form-group-32">
                         <label for="text-4a55" class="u-label u-label-49">Номер свидетельства о браке (разводе)</label>
                         <input type="text" placeholder="" id="text-4a55" asp-for="@Model.UserData.FamilyStatus.MarriageCertificateNumber" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-32">
+                        <label for="text-4a55" class="u-label u-label-49">Серия свидетельства о браке (разводе)</label>
+                        <input type="text" placeholder="" id="text-4a55" asp-for="@Model.UserData.FamilyStatus.MarriageCertificateSeries" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                    </div>
+                    <div class="u-form-group u-form-partition-factor-3 u-form-group-32">
+                        <label for="text-4a55" class="u-label u-label-49">Решение суда о разводе</label>
+                        <input type="text" placeholder="" id="text-4a55" asp-for="@Model.UserData.FamilyStatus.Court" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-date u-form-group u-form-partition-factor-3 u-form-group-33">
                         <label for="date-fd8e" class="u-label u-label-50">Дата выдачи</label>

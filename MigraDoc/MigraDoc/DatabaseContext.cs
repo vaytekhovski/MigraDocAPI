@@ -29,7 +29,7 @@ namespace MigraDoc.WebAPI
         public DbSet<IncomeListEntity> IncomeLists { get; set; }
         public DbSet<IncomeEntity> Incomes { get; set; }
         public DbSet<NameChangesEntity> NameChanges { get; set; }
-        public DbSet<NationalityEntity> Nationalities { get; set; }
+        public DbSet<CitizenshipEntity> Citizenships { get; set; }
         public DbSet<RelativesEntity> Relatives { get; set; }
         public DbSet<RussianKnowledgeEntity> RussianKnowledges { get; set; }
         public DbSet<UnreleasedConvictionEntity> UnreleasedConvictions { get; set; }

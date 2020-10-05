@@ -47,7 +47,7 @@ namespace MigraDoc.Core.CRUD
                     {
                         UserId = user.id,
                         Education = new EducationEntity(),
-                        Nationality = new NationalityEntity(),
+                        Citizenship = new CitizenshipEntity(),
                         IdentityDocument = new IdentityDocumentEntity(),
                         EducationLevel = new EducationLevelEntity(),
                         WorkPermit = new WorkPermitEntity(),
@@ -117,7 +117,6 @@ namespace MigraDoc.Core.CRUD
                 exist_userdata.FirstName = userData.FirstName == null ? exist_userdata.FirstName : userData.FirstName;
                 exist_userdata.Surname = userData.Surname == null ? exist_userdata.Surname : userData.Surname;
                 exist_userdata.MiddleName = userData.MiddleName == null ? exist_userdata.MiddleName : userData.MiddleName;
-                exist_userdata.MiddleNameAbsent = userData.MiddleName == null ? true : false;
                 exist_userdata.EngFirstName = userData.EngFirstName == null ? exist_userdata.EngFirstName : userData.EngFirstName;
                 exist_userdata.EngSurname = userData.EngSurname == null ? exist_userdata.EngSurname : userData.EngSurname;
 
@@ -125,11 +124,11 @@ namespace MigraDoc.Core.CRUD
                 exist_userdata.CountryOfBirth = userData.CountryOfBirth == null ? exist_userdata.CountryOfBirth : userData.CountryOfBirth;
                 exist_userdata.PlaceOfBirth = userData.PlaceOfBirth == null ? exist_userdata.PlaceOfBirth : userData.PlaceOfBirth;
 
-                if (userData.Nationality != null)
+                if (userData.Citizenship != null)
                 {
-                    userData.Nationality.id = exist_userdata.NationalityId;
-                    exist_userdata.Nationality = userData.Nationality;
-                    db.Nationalities.Update(exist_userdata.Nationality);
+                    userData.Citizenship.id = exist_userdata.CitizenshipId;
+                    exist_userdata.Citizenship = userData.Citizenship;
+                    db.Nationalities.Update(exist_userdata.Citizenship);
                 }
 
                 exist_userdata.Creed = userData.Creed == null ? exist_userdata.Creed : userData.Creed;
@@ -281,9 +280,9 @@ namespace MigraDoc.Core.CRUD
                 userData.Documents = db.Documents.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.Education = db.Educations.AsNoTracking().Where(x => x.id == userData.EducationId).FirstOrDefault();
                 userData.NameChanges = db.NameChanges.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
-                userData.Nationality = db.Nationalities.AsNoTracking().Where(x => x.id == userData.NationalityId).FirstOrDefault();
+                userData.Citizenship = db.Nationalities.AsNoTracking().Where(x => x.id == userData.CitizenshipId).FirstOrDefault();
                 userData.IdentityDocument = db.IdentityDocuments.AsNoTracking().Where(x => x.id == userData.IdentityDocumentId).FirstOrDefault();
-                userData.Relatives = db.Relatives.AsNoTracking().Include(x=>x.Nationality).Include(x=>x.CountryOfResidence).Where(x => x.UserId == userData.UserId).ToList();
+                userData.Relatives = db.Relatives.AsNoTracking().Include(x=>x.Citizenship).Include(x=>x.CountryOfResidence).Where(x => x.UserId == userData.UserId).ToList();
                 userData.Works = db.Works.AsNoTracking().Where(x => x.UserId == userData.UserId).ToList();
                 userData.EducationLevel = db.EducationLevels.AsNoTracking().Where(x => x.id == userData.EducationLevelId).FirstOrDefault();
                 userData.WorkPermit = db.WorkPermits.AsNoTracking().Where(x => x.id == userData.WorkPermitId).FirstOrDefault();
@@ -324,7 +323,7 @@ namespace MigraDoc.Core.CRUD
                 {
                     UserId = UserId,
                     CountryOfResidence = new AddressEntity(),
-                    Nationality = new NationalityEntity()
+                    Citizenship = new CitizenshipEntity()
 
                 };
                 db.Relatives.Add(Relative);
@@ -374,7 +373,7 @@ namespace MigraDoc.Core.CRUD
                     .Where(x => x.UserId == user.id)
                     .Include(x => x.User)
                     .Include(x => x.Relatives)
-                    .Include(x => x.Nationality)
+                    .Include(x => x.Citizenship)
                     .Include(x => x.Documents)
                     .FirstOrDefault();
 
@@ -404,7 +403,7 @@ namespace MigraDoc.Core.CRUD
                 db.EducationLevels.Remove(userData.EducationLevel);
                 db.Relatives.RemoveRange(userData.Relatives);
                 db.IdentityDocuments.Remove(userData.IdentityDocument);
-                db.Nationalities.Remove(userData.Nationality);
+                db.Nationalities.Remove(userData.Citizenship);
                 db.NameChanges.RemoveRange(userData.NameChanges);
                 db.Educations.RemoveRange(userData.Education);
                 db.Users.Remove(userData.User);
@@ -424,14 +423,14 @@ namespace MigraDoc.Core.CRUD
             {
                 _UserDatas = db.UserDatas
                     .Include(x=>x.User)
-                    .Include(x=>x.Nationality)
+                    .Include(x=>x.Citizenship)
                     .Include(x=>x.Documents)
                     .Include(x=>x.NameChanges)
                     .ToList();
 
                 if(filter.country != "none")
                 {
-                    _UserDatas = _UserDatas.Where(x => x.Nationality.Name == filter.country).ToList();
+                    _UserDatas = _UserDatas.Where(x => x.Citizenship.Name == filter.country).ToList();
                 }
 
                 if(filter.documentStatus != "all")

@@ -18,6 +18,8 @@ namespace MigraDoc.Core.Converters
             model.id = entity.id;
             model.Type = entity.Type;
             model.MarriageCertificateNumber = entity.MarriageCertificateNumber;
+            model.MarriageCertificateSeries = entity.MarriageCertificateSeries;
+            model.Court = entity.Court;
             model.IssueDate = entity.IssueDate;
             model.IssuePlace = entity.IssuePlace;
 
@@ -34,6 +36,8 @@ namespace MigraDoc.Core.Converters
 
             entity.Type = model.Type;
             entity.MarriageCertificateNumber = model.MarriageCertificateNumber;
+            entity.MarriageCertificateSeries = model.MarriageCertificateSeries;
+            entity.Court = model.Court;
             entity.IssueDate = model.IssueDate;
             entity.IssuePlace = model.IssuePlace;
 

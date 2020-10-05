@@ -18,7 +18,6 @@ namespace MigraDoc.Core.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }
-        public bool MiddleNameAbsent { get; set; }
 
         public string EngFirstName { get; set; }
         public string EngSurname { get; set; }
@@ -28,7 +27,9 @@ namespace MigraDoc.Core.Models
         public string PlaceOfBirth { get; set; }
 
 
-        public NationalityModel Nationality { get; set; }
+        public CitizenshipModel Citizenship { get; set; }
+        public string Nationality { get; set; }
+
         public string Creed { get; set; }
         public FamilyStatusModel FamilyStatus { get; set; }
         public IdentityDocumentModel IdentityDocument { get; set; }

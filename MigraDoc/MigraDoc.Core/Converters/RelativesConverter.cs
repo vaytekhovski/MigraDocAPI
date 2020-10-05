@@ -8,7 +8,7 @@ namespace MigraDoc.Core.Converters
 {
     class RelativesConverter : IConverter<RelativesEntity, RelativesModel>
     {
-        NationalityConverter NationalityConverter = new NationalityConverter();
+        CitizenshipConverter CitizenshipConverter = new CitizenshipConverter();
         AddressConverter AddressConverter = new AddressConverter();
         public RelativesModel entityToModel(RelativesEntity entity, RelativesModel model)
         {
@@ -31,9 +31,9 @@ namespace MigraDoc.Core.Converters
 
             model.DateOfBirth = entity.DateOfBirth;
             
-            if(entity.Nationality != null)
+            if(entity.Citizenship != null)
             {
-                model.Nationality = NationalityConverter.entityToModel(entity.Nationality, null);
+                model.Citizenship = CitizenshipConverter.entityToModel(entity.Citizenship, null);
             }
 
             model.PlaceOfBirth = entity.PlaceOfBirth;
@@ -69,9 +69,9 @@ namespace MigraDoc.Core.Converters
 
             entity.DateOfBirth = model.DateOfBirth;
 
-            if (model.Nationality != null)
+            if (model.Citizenship != null)
             {
-                entity.Nationality = NationalityConverter.modelToEntity(null, model.Nationality);
+                entity.Citizenship = CitizenshipConverter.modelToEntity(null, model.Citizenship);
             }
 
             entity.PlaceOfBirth = model.PlaceOfBirth;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MigraDoc.Core.Models
 {
-    public enum NationalityType
+    public enum CitizenshipType
     {
         beforeSSSR,
         afterSSSR

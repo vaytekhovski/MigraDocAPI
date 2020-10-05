@@ -20,7 +20,6 @@ namespace MigraDoc.Core.Entities
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }
-        public bool MiddleNameAbsent { get; set; }
 
         public string EngFirstName { get; set; }
         public string EngSurname { get; set; }
@@ -29,8 +28,9 @@ namespace MigraDoc.Core.Entities
         public string CountryOfBirth { get; set; }
         public string PlaceOfBirth { get; set; }
 
-        public Guid NationalityId { get; set; }
-        public NationalityEntity Nationality { get; set; }
+        public Guid CitizenshipId { get; set; }
+        public CitizenshipEntity Citizenship { get; set; }
+        public string Nationality { get; set; }
         public string Creed { get; set; }
 
         public Guid FamilyStatusId { get; set; }

@@ -10,6 +10,8 @@ namespace MigraDoc.Core.Entities
         public Guid id { get; set; }
         public FamilyStatusType Type { get; set; }
         public string MarriageCertificateNumber { get; set; }
+        public string MarriageCertificateSeries { get; set; }
+        public string Court { get; set; }
         public DateTime IssueDate { get; set; }
         public string IssuePlace { get; set; }
     }
