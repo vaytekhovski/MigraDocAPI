@@ -298,7 +298,7 @@ namespace MigraDoc.WebAPP.Controllers
                 var relative = UserData.Relatives.FirstOrDefault(x => x.id == viewModel.RelativeId);
                 UserData.Relatives.Remove(relative);
                 viewModel.Relative.id = relative.id;
-                viewModel.Relative.NationalityId = relative.NationalityId;
+                viewModel.Relative.CitizenshipId = relative.CitizenshipId;
                 viewModel.Relative.CountryOfResidenceId = relative.CountryOfResidenceId;
                 switch (viewModel.Relative.RelativeType)
                 {

@@ -22,12 +22,10 @@ namespace MigraDoc.Core.Converters
             model.KinsfolkType = entity.KinsfolkType;
             model.alive = entity.alive;
             model.ChildType = entity.ChildType;
-            model.SexType = entity.SexType;
 
             model.FirstName = entity.FirstName;
             model.Surname = entity.Surname;
             model.MiddleName = entity.MiddleName;
-            model.MiddleNameAbsent = entity.MiddleNameAbsent;
 
             model.DateOfBirth = entity.DateOfBirth;
             
@@ -60,12 +58,10 @@ namespace MigraDoc.Core.Converters
             entity.KinsfolkType = model.KinsfolkType;
             entity.alive = model.alive;
             entity.ChildType = model.ChildType;
-            entity.SexType = model.SexType;
 
             entity.FirstName = model.FirstName;
             entity.Surname = model.Surname;
             entity.MiddleName = model.MiddleName;
-            entity.MiddleNameAbsent = model.MiddleNameAbsent;
 
             entity.DateOfBirth = model.DateOfBirth;
 

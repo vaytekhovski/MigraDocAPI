@@ -5,11 +5,11 @@ using System.Text;
 
 namespace MigraDoc.Core.Entities
 {
-    public class NationalityEntity : IPersistentEntity
+    public class CitizenshipEntity : IPersistentEntity
     {
         public Guid id { get; set; }
         public string Name { get; set; }
-        public NationalityType Type { get; set; }
+        public CitizenshipType Type { get; set; }
         public DateTime DateOfReceiving { get; set; }
         public bool DateIsUnknown { get; set; }
         public string HandlyDateOfReceiving { get; set; }

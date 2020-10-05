@@ -6,13 +6,13 @@ using System.Text;
 
 namespace MigraDoc.Core.Converters
 {
-    class citizenshipConverter : IConverter<citizenshipEntity, citizenshipModel>
+    class CitizenshipConverter : IConverter<CitizenshipEntity, CitizenshipModel>
     {
-        public citizenshipModel entityToModel(citizenshipEntity entity, citizenshipModel model)
+        public CitizenshipModel entityToModel(CitizenshipEntity entity, CitizenshipModel model)
         {
             if (model == null)
             {
-                model = new citizenshipModel();
+                model = new CitizenshipModel();
             }
 
             model.id = entity.id;
@@ -30,11 +30,11 @@ namespace MigraDoc.Core.Converters
             return model;
         }
 
-        public citizenshipEntity modelToEntity(citizenshipEntity entity, citizenshipModel model)
+        public CitizenshipEntity modelToEntity(CitizenshipEntity entity, CitizenshipModel model)
         {
             if (entity == null)
             {
-                entity = new citizenshipEntity();
+                entity = new CitizenshipEntity();
             }
 
 

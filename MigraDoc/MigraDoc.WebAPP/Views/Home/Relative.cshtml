@@ -52,7 +52,7 @@
                             <div class="u-container-layout u-container-layout-2">
                                 <h3 class="u-text u-text-2">@Model.UserData.Surname @Model.UserData.FirstName @Model.UserData.MiddleName</h3>
                                 <h6 class="u-text u-text-3">@Model.UserData.EngSurname @Model.UserData.EngFirstName</h6>
-                                <h6 class="u-text u-text-4">@Model.UserData.Nationality.Name</h6>
+                                <h6 class="u-text u-text-4">@Model.UserData.Citizenship.Name</h6>
                                 <h5 class="u-text u-text-5">@Model.DocumentStatus</h5>
                                 <h6 class="u-text u-text-6"></h6>
                                 
@@ -70,7 +70,7 @@
                     <input type="hidden" asp-for="@Model.UserData.id" />
                     <input type="hidden" asp-for="@Model.RelativeId" />
                     <input type="hidden" asp-for="@Model.Relative.UserId" />
-                    <input type="hidden" asp-for="@Model.Relative.Nationality.id" />
+                    <input type="hidden" asp-for="@Model.Relative.Citizenship.id" />
 
                     <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-1">
                         <label for="select-f528" class="u-form-control-hidden u-label">Выбрать</label>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-6">
                         <label for="text-5cca" class="u-label">Гражданство (подданство)</label>
-                        <input type="text" placeholder="" id="text-5cca" asp-for="@Model.Relative.Nationality.Name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="" id="text-5cca" asp-for="@Model.Relative.Citizenship.Name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     </div>
                     <div class="u-form-group u-form-partition-factor-2 u-form-group-7">
                         <label for="text-766b" class="u-label">Место рождения</label>
