@@ -6,6 +6,15 @@ namespace MigraDoc.Core.Models
 {
     public class UserDataModel : IPersistentModel
     {
+        public UserDataModel()
+        {
+            NameChanges = new List<NameChangesModel>();
+            Documents = new List<DocumentModel>();
+            Relatives = new List<RelativesModel>();
+            Works = new List<WorkModel>();
+        }
+
+
         public Guid id { get; set; }
         public UserModel UserModel { get; set; } 
         public SexType Sex { get; set; }
