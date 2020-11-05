@@ -13,6 +13,6 @@ namespace MigraDoc.Core.Entities
         public string PreviusSurname { get; set; }
         public string PreviusMiddleName { get; set; }
         public ChangeReasonType ChangeReason { get; set; }
-        public DateTime ChangeDate { get; set; }
+        public int ChangeDate { get; set; }
     }
 }
