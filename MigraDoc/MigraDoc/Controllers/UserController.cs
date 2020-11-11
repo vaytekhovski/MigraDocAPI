@@ -53,6 +53,7 @@ namespace MigraDoc.WebAPI.Controllers
         [HttpPut("{tgUserId}/update")]
         public IActionResult update(string tgUserId, [FromBody] UserDataModel user)
         {
+            logger.LogInformation(DateTime.Now.ToString() + "For update entred data: " + user);
             if(user.UserModel != null)
             {
                 user.UserModel.telegramUserId = tgUserId;
@@ -75,10 +76,12 @@ namespace MigraDoc.WebAPI.Controllers
             }
 
             logger.LogInformation(DateTime.Now.ToString() + " User TG[" + tgUserId + "] updated");
+            logger.Log("Updated data: " + user_data_entity);
             foreach (var doc in user_data_entity.Documents)
             {
                 logger.LogInformation("Documents: " + doc.Name);
             }
+
             
 
             return Ok(UserDataConverter.entityToModel(user_data_entity, user));
