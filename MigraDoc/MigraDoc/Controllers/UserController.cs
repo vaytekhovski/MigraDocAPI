@@ -76,7 +76,7 @@ namespace MigraDoc.WebAPI.Controllers
             }
 
             logger.LogInformation(DateTime.Now.ToString() + " User TG[" + tgUserId + "] updated");
-            logger.Log("Updated data: " + user_data_entity);
+            logger.LogInformation("Updated data: " + user_data_entity);
             foreach (var doc in user_data_entity.Documents)
             {
                 logger.LogInformation("Documents: " + doc.Name);
