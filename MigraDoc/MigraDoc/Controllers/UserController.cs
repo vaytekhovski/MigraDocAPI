@@ -4,6 +4,8 @@ using MigraDoc.Core.Models;
 using MigraDoc.Core.Converters;
 using Com.SNGJob.Core.Exceptions;
 using MigraDoc.Core.CRUD;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace MigraDoc.WebAPI.Controllers
 {
@@ -11,6 +13,13 @@ namespace MigraDoc.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private ILogger<UserController> logger;
+        public UserController(ILogger<UserController> _logger)
+        {
+            logger = _logger;
+        }
+
+
         private UserDataConverter UserDataConverter = new UserDataConverter();
         private UserConverter UserConverter = new UserConverter();
         private UserDataRepository UserDataRepository { get; set; }
@@ -29,13 +38,17 @@ namespace MigraDoc.WebAPI.Controllers
             }
             catch(TelegramUserAlreadyExistsException e)
             {
+                logger.LogError(DateTime.Now.ToString() + " User TG[" + tgUserId + "] already exist");
                 return BadRequest(e.GetMessageObject());
             }
             catch(UserCreateFailedException e)
             {
+                logger.LogError(DateTime.Now.ToString() + " User TG[" + tgUserId + "] create failed");
+
                 return BadRequest(e.GetMessageObject());
             }
 
+            logger.LogInformation(DateTime.Now.ToString() + " User TG[" + tgUserId + "] created");
 
             return Ok(UserConverter.entityToModel(user_entity, null));
         }
@@ -59,8 +72,17 @@ namespace MigraDoc.WebAPI.Controllers
             }
             catch(UserNotFoundException e)
             {
+                logger.LogError(DateTime.Now.ToString() + " User TG[" + tgUserId + "] not found");
+
                 return BadRequest(e.GetMessageObject());
             }
+
+            logger.LogInformation(DateTime.Now.ToString() + " User TG[" + tgUserId + "] updated");
+            foreach (var doc in user_data_entity.Documents)
+            {
+                logger.LogInformation("Documents: " + doc.Name);
+            }
+            
 
             return Ok(UserDataConverter.entityToModel(user_data_entity, user));
         }
