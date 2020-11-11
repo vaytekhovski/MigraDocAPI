@@ -14,18 +14,15 @@ namespace MigraDoc.WebAPI.Controllers
     public class UserController : ControllerBase
     {
         private ILogger<UserController> logger;
-        public UserController(ILogger<UserController> _logger)
-        {
-            logger = _logger;
-        }
-
 
         private UserDataConverter UserDataConverter = new UserDataConverter();
+
         private UserConverter UserConverter = new UserConverter();
         private UserDataRepository UserDataRepository { get; set; }
-        public UserController(UserDataRepository userDataRepository)
+        public UserController(UserDataRepository userDataRepository, ILogger<UserController> _logger)
         {
             UserDataRepository = userDataRepository;
+            logger = _logger;
         }
 
         [HttpPost("{tgUserId}/start")]
