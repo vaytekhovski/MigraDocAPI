@@ -6,6 +6,7 @@ using Com.SNGJob.Core.Exceptions;
 using MigraDoc.Core.CRUD;
 using Microsoft.Extensions.Logging;
 using System;
+using Newtonsoft.Json;
 
 namespace MigraDoc.WebAPI.Controllers
 {
@@ -53,7 +54,7 @@ namespace MigraDoc.WebAPI.Controllers
         [HttpPut("{tgUserId}/update")]
         public IActionResult update(string tgUserId, [FromBody] UserDataModel user)
         {
-            logger.LogInformation(DateTime.Now.ToString() + " For update entred data: " + user.ToString());
+            logger.LogInformation(DateTime.Now.ToString() + " For update entred data: " + JsonConvert.SerializeObject(user).ToString());
             if(user.UserModel != null)
             {
                 user.UserModel.telegramUserId = tgUserId;
@@ -76,7 +77,7 @@ namespace MigraDoc.WebAPI.Controllers
             }
 
             logger.LogInformation(DateTime.Now.ToString() + " User TG[" + tgUserId + "] updated");
-            logger.LogInformation("Updated data: " + user_data_entity.ToString());
+            logger.LogInformation("Updated data: " + JsonConvert.SerializeObject(user_data_entity).ToString());
             foreach (var doc in user_data_entity.Documents)
             {
                 logger.LogInformation("Documents: " + doc.Name);
