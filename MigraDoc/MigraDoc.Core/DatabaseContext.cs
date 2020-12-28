@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MigraDoc.Core.Entities;
+using MigraDoc.Core.Models;
+using MigraDoc.Core.Models.FullData;
 
 namespace MigraDoc.Core
 {
@@ -20,22 +21,24 @@ namespace MigraDoc.Core
             }
         }
 
-        public DbSet<DocumentEntity> Documents { get; set; }
-        public DbSet<AddressEntity> Addresses { get; set; }
-        public DbSet<EducationEntity> Educations { get; set; }
-        public DbSet<EducationLevelEntity> EducationLevels { get; set; }
-        public DbSet<FamilyStatusEntity> FamilyStatuses { get; set; }
-        public DbSet<IdentityDocumentEntity> IdentityDocuments { get; set; }
-        public DbSet<IncomeListEntity> IncomeLists { get; set; }
-        public DbSet<IncomeEntity> Incomes { get; set; }
-        public DbSet<NameChangesEntity> NameChanges { get; set; }
-        public DbSet<CitizenshipEntity> Nationalities { get; set; }
-        public DbSet<RelativesEntity> Relatives { get; set; }
-        public DbSet<RussianKnowledgeEntity> RussianKnowledges { get; set; }
-        public DbSet<UnreleasedConvictionEntity> UnreleasedConvictions { get; set; }
-        public DbSet<UserDataEntity> UserDatas { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
-        public DbSet<WorkEntity> Works { get; set; }
-        public DbSet<WorkPermitEntity> WorkPermits { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserDetail> UserDetails { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<isChange> isChanges { get; set; }
+        public DbSet<Change> Changes { get; set; }
+        public DbSet<FullName> FullNames { get; set; }
+        public DbSet<Passport> Passports { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<EducationInfo> EducationInfos { get; set; }
+        public DbSet<Kinsfolk> Kinsfolks { get; set; }
+        public DbSet<MigrationCard> MigrationCards { get; set; }
+        public DbSet<RusLangDocument> RusLangDocuments { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<WorkFromWho> WorkFromWhos { get; set; }
+        public DbSet<MigrationReg> MigrationRegs { get; set; }
+        public DbSet<AddressDuringWork> AddressDuringWorks { get; set; }
+        public DbSet<Work> Works { get; set; }
+
     }
 }

@@ -26,9 +26,9 @@ namespace MigraDoc
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v2", new OpenApiInfo
                 {
-                    Version = "v1",
+                    Version = "v2",
                     Title = "MigraDoc Web API",
                     Description = "Description of SNG Job Web API"
                 });
@@ -57,7 +57,7 @@ namespace MigraDoc
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MigraDoc Api v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MigraDoc Api v2");
                 c.RoutePrefix = string.Empty;
             });
 
