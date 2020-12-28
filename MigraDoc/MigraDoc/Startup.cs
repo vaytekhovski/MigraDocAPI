@@ -57,7 +57,7 @@ namespace MigraDoc
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MigraDoc Api v2");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "MigraDoc Api v2");
                 c.RoutePrefix = string.Empty;
             });
 
