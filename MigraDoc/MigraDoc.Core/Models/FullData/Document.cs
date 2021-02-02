@@ -10,5 +10,6 @@ namespace MigraDoc.Core.Models.FullData
         public Guid UserId { get; set; }
         public DocumentType documentType { get; set; }
         public DocumentStatus documentStatus { get; set; }
+        public DateTime creationDate { get; set; }
     }
 }
